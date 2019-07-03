@@ -7,15 +7,36 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseUI
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, FUIAuthDelegate {
 
     var window: UIWindow?
-
+    var handle: AuthStateDidChangeListenerHandle?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        FirebaseApp.configure()
+        // Listen for authentication state
+        handle = Auth.auth().addStateDidChangeListener { (auth, user) in
+            if user == nil {
+                UserController.shared.buddyUser = nil
+                // Create a FirebaseUI sign-in view controller
+                guard let authUI = FUIAuth.defaultAuthUI() else { return }
+                authUI.delegate = self
+                authUI.providers = [FUIEmailAuth()]
+                let authUIViewController = authUI.authViewController()
+                self.window!.rootViewController!.present(authUIViewController, animated: true, completion: nil)
+            } else {
+                UserController.shared.createBuddyUser(user: user!)
+                let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let homeViewController = mainStoryboard.instantiateInitialViewController()!
+                // Navigate to the Home screen
+                self.window!.rootViewController!.present(homeViewController, animated: true, completion: nil)
+            }
+        }
         return true
     }
 

@@ -3,25 +3,43 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		A487B07322CC7ADA004EA220 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A487B07222CC7ADA004EA220 /* AppDelegate.swift */; };
-		A487B07522CC7ADA004EA220 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A487B07422CC7ADA004EA220 /* ViewController.swift */; };
 		A487B07822CC7ADA004EA220 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A487B07622CC7ADA004EA220 /* Main.storyboard */; };
 		A487B07A22CC7ADB004EA220 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A487B07922CC7ADB004EA220 /* Assets.xcassets */; };
 		A487B07D22CC7ADB004EA220 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A487B07B22CC7ADB004EA220 /* LaunchScreen.storyboard */; };
+		A487B08522CC7C26004EA220 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A487B08422CC7C26004EA220 /* GoogleService-Info.plist */; };
+		A4C61F6222CC81EA005ED098 /* BuddyUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C61F6122CC81EA005ED098 /* BuddyUser.swift */; };
+		A4C61F6422CC8372005ED098 /* Drink.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C61F6322CC8372005ED098 /* Drink.swift */; };
+		A4C61F6722CC872A005ED098 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C61F6622CC872A005ED098 /* HomeViewController.swift */; };
+		A4C61F6922CC8758005ED098 /* CartTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C61F6822CC8758005ED098 /* CartTableViewController.swift */; };
+		A4C61F6B22CC87B4005ED098 /* UserManagementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C61F6A22CC87B4005ED098 /* UserManagementViewController.swift */; };
+		A4C61F6E22CC88B1005ED098 /* DrinkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C61F6D22CC88B1005ED098 /* DrinkController.swift */; };
+		A4C61F7022CC88BB005ED098 /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C61F6F22CC88BB005ED098 /* UserController.swift */; };
+		AFC2582E461126BAC9A26049 /* Pods_BuddyCoffee.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23F116F90622FBBA1CCE2D6F /* Pods_BuddyCoffee.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		23F116F90622FBBA1CCE2D6F /* Pods_BuddyCoffee.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BuddyCoffee.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		96E4B8FF9ABA8E6F5407EB8B /* Pods-BuddyCoffee.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BuddyCoffee.debug.xcconfig"; path = "Target Support Files/Pods-BuddyCoffee/Pods-BuddyCoffee.debug.xcconfig"; sourceTree = "<group>"; };
 		A487B06F22CC7ADA004EA220 /* BuddyCoffee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BuddyCoffee.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A487B07222CC7ADA004EA220 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A487B07422CC7ADA004EA220 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		A487B07722CC7ADA004EA220 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A487B07922CC7ADB004EA220 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A487B07C22CC7ADB004EA220 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A487B07E22CC7ADB004EA220 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A487B08422CC7C26004EA220 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A4C61F6122CC81EA005ED098 /* BuddyUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuddyUser.swift; sourceTree = "<group>"; };
+		A4C61F6322CC8372005ED098 /* Drink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drink.swift; sourceTree = "<group>"; };
+		A4C61F6622CC872A005ED098 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		A4C61F6822CC8758005ED098 /* CartTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartTableViewController.swift; sourceTree = "<group>"; };
+		A4C61F6A22CC87B4005ED098 /* UserManagementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManagementViewController.swift; sourceTree = "<group>"; };
+		A4C61F6D22CC88B1005ED098 /* DrinkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkController.swift; sourceTree = "<group>"; };
+		A4C61F6F22CC88BB005ED098 /* UserController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
+		B3C04D4BF384F90ACF2A46FC /* Pods-BuddyCoffee.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BuddyCoffee.release.xcconfig"; path = "Target Support Files/Pods-BuddyCoffee/Pods-BuddyCoffee.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +47,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AFC2582E461126BAC9A26049 /* Pods_BuddyCoffee.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4708EC49AEF92F8859B46C30 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				96E4B8FF9ABA8E6F5407EB8B /* Pods-BuddyCoffee.debug.xcconfig */,
+				B3C04D4BF384F90ACF2A46FC /* Pods-BuddyCoffee.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		A487B06622CC7ADA004EA220 = {
 			isa = PBXGroup;
 			children = (
 				A487B07122CC7ADA004EA220 /* BuddyCoffee */,
 				A487B07022CC7ADA004EA220 /* Products */,
+				4708EC49AEF92F8859B46C30 /* Pods */,
+				FB15632A68CE4AC134926B06 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,14 +84,53 @@
 		A487B07122CC7ADA004EA220 /* BuddyCoffee */ = {
 			isa = PBXGroup;
 			children = (
+				A4C61F6C22CC8895005ED098 /* Model Controllers */,
+				A4C61F6522CC870C005ED098 /* View Controllers */,
+				A4C61F6022CC81B6005ED098 /* Model */,
 				A487B07222CC7ADA004EA220 /* AppDelegate.swift */,
-				A487B07422CC7ADA004EA220 /* ViewController.swift */,
 				A487B07622CC7ADA004EA220 /* Main.storyboard */,
 				A487B07922CC7ADB004EA220 /* Assets.xcassets */,
 				A487B07B22CC7ADB004EA220 /* LaunchScreen.storyboard */,
 				A487B07E22CC7ADB004EA220 /* Info.plist */,
+				A487B08422CC7C26004EA220 /* GoogleService-Info.plist */,
 			);
 			path = BuddyCoffee;
+			sourceTree = "<group>";
+		};
+		A4C61F6022CC81B6005ED098 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A4C61F6122CC81EA005ED098 /* BuddyUser.swift */,
+				A4C61F6322CC8372005ED098 /* Drink.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A4C61F6522CC870C005ED098 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A4C61F6622CC872A005ED098 /* HomeViewController.swift */,
+				A4C61F6822CC8758005ED098 /* CartTableViewController.swift */,
+				A4C61F6A22CC87B4005ED098 /* UserManagementViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		A4C61F6C22CC8895005ED098 /* Model Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A4C61F6D22CC88B1005ED098 /* DrinkController.swift */,
+				A4C61F6F22CC88BB005ED098 /* UserController.swift */,
+			);
+			path = "Model Controllers";
+			sourceTree = "<group>";
+		};
+		FB15632A68CE4AC134926B06 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				23F116F90622FBBA1CCE2D6F /* Pods_BuddyCoffee.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -71,9 +140,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A487B08122CC7ADB004EA220 /* Build configuration list for PBXNativeTarget "BuddyCoffee" */;
 			buildPhases = (
+				ACB50C0982C1A5376A99098F /* [CP] Check Pods Manifest.lock */,
 				A487B06B22CC7ADA004EA220 /* Sources */,
 				A487B06C22CC7ADA004EA220 /* Frameworks */,
 				A487B06D22CC7ADA004EA220 /* Resources */,
+				4C3A0E8F4F797870E1B6B5A1 /* [CP] Embed Pods Frameworks */,
+				432FDFF1FF0CEBDA9481C88B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -123,6 +195,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A487B07D22CC7ADB004EA220 /* LaunchScreen.storyboard in Resources */,
+				A487B08522CC7C26004EA220 /* GoogleService-Info.plist in Resources */,
 				A487B07A22CC7ADB004EA220 /* Assets.xcassets in Resources */,
 				A487B07822CC7ADA004EA220 /* Main.storyboard in Resources */,
 			);
@@ -130,13 +203,78 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		432FDFF1FF0CEBDA9481C88B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BuddyCoffee/Pods-BuddyCoffee-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BuddyCoffee/Pods-BuddyCoffee-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BuddyCoffee/Pods-BuddyCoffee-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4C3A0E8F4F797870E1B6B5A1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BuddyCoffee/Pods-BuddyCoffee-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BuddyCoffee/Pods-BuddyCoffee-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BuddyCoffee/Pods-BuddyCoffee-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		ACB50C0982C1A5376A99098F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BuddyCoffee-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		A487B06B22CC7ADA004EA220 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A487B07522CC7ADA004EA220 /* ViewController.swift in Sources */,
+				A4C61F6222CC81EA005ED098 /* BuddyUser.swift in Sources */,
+				A4C61F6422CC8372005ED098 /* Drink.swift in Sources */,
+				A4C61F7022CC88BB005ED098 /* UserController.swift in Sources */,
 				A487B07322CC7ADA004EA220 /* AppDelegate.swift in Sources */,
+				A4C61F6E22CC88B1005ED098 /* DrinkController.swift in Sources */,
+				A4C61F6922CC8758005ED098 /* CartTableViewController.swift in Sources */,
+				A4C61F6B22CC87B4005ED098 /* UserManagementViewController.swift in Sources */,
+				A4C61F6722CC872A005ED098 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,11 +418,13 @@
 		};
 		A487B08222CC7ADB004EA220 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 96E4B8FF9ABA8E6F5407EB8B /* Pods-BuddyCoffee.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 25YD4528FX;
 				INFOPLIST_FILE = BuddyCoffee/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -298,11 +438,13 @@
 		};
 		A487B08322CC7ADB004EA220 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B3C04D4BF384F90ACF2A46FC /* Pods-BuddyCoffee.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 25YD4528FX;
 				INFOPLIST_FILE = BuddyCoffee/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
