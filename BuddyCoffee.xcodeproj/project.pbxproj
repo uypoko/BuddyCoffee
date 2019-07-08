@@ -12,11 +12,11 @@
 		944F537B22CCB5E0001AD654 /* OrderHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944F537A22CCB5E0001AD654 /* OrderHistory.swift */; };
 		944F537D22CCC389001AD654 /* DrinkTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944F537C22CCC389001AD654 /* DrinkTableViewCell.swift */; };
 		944F538022CCD9B9001AD654 /* DrinkDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944F537F22CCD9B9001AD654 /* DrinkDetailViewController.swift */; };
+		94D2AE1722D335EF00BA40F9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 94D2AE1622D335EE00BA40F9 /* GoogleService-Info.plist */; };
 		A487B07322CC7ADA004EA220 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A487B07222CC7ADA004EA220 /* AppDelegate.swift */; };
 		A487B07822CC7ADA004EA220 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A487B07622CC7ADA004EA220 /* Main.storyboard */; };
 		A487B07A22CC7ADB004EA220 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A487B07922CC7ADB004EA220 /* Assets.xcassets */; };
 		A487B07D22CC7ADB004EA220 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A487B07B22CC7ADB004EA220 /* LaunchScreen.storyboard */; };
-		A487B08522CC7C26004EA220 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A487B08422CC7C26004EA220 /* GoogleService-Info.plist */; };
 		A4C61F6222CC81EA005ED098 /* BuddyUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C61F6122CC81EA005ED098 /* BuddyUser.swift */; };
 		A4C61F6422CC8372005ED098 /* Drink.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C61F6322CC8372005ED098 /* Drink.swift */; };
 		A4C61F6722CC872A005ED098 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C61F6622CC872A005ED098 /* HomeViewController.swift */; };
@@ -34,6 +34,7 @@
 		944F537A22CCB5E0001AD654 /* OrderHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderHistory.swift; sourceTree = "<group>"; };
 		944F537C22CCC389001AD654 /* DrinkTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkTableViewCell.swift; sourceTree = "<group>"; };
 		944F537F22CCD9B9001AD654 /* DrinkDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkDetailViewController.swift; sourceTree = "<group>"; };
+		94D2AE1622D335EE00BA40F9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		96E4B8FF9ABA8E6F5407EB8B /* Pods-BuddyCoffee.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BuddyCoffee.debug.xcconfig"; path = "Target Support Files/Pods-BuddyCoffee/Pods-BuddyCoffee.debug.xcconfig"; sourceTree = "<group>"; };
 		A487B06F22CC7ADA004EA220 /* BuddyCoffee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BuddyCoffee.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A487B07222CC7ADA004EA220 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -41,7 +42,6 @@
 		A487B07922CC7ADB004EA220 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A487B07C22CC7ADB004EA220 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A487B07E22CC7ADB004EA220 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A487B08422CC7C26004EA220 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A4C61F6122CC81EA005ED098 /* BuddyUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuddyUser.swift; sourceTree = "<group>"; };
 		A4C61F6322CC8372005ED098 /* Drink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drink.swift; sourceTree = "<group>"; };
 		A4C61F6622CC872A005ED098 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -111,7 +111,7 @@
 				A487B07922CC7ADB004EA220 /* Assets.xcassets */,
 				A487B07B22CC7ADB004EA220 /* LaunchScreen.storyboard */,
 				A487B07E22CC7ADB004EA220 /* Info.plist */,
-				A487B08422CC7C26004EA220 /* GoogleService-Info.plist */,
+				94D2AE1622D335EE00BA40F9 /* GoogleService-Info.plist */,
 			);
 			path = BuddyCoffee;
 			sourceTree = "<group>";
@@ -218,7 +218,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A487B07D22CC7ADB004EA220 /* LaunchScreen.storyboard in Resources */,
-				A487B08522CC7C26004EA220 /* GoogleService-Info.plist in Resources */,
+				94D2AE1722D335EF00BA40F9 /* GoogleService-Info.plist in Resources */,
 				A487B07A22CC7ADB004EA220 /* Assets.xcassets in Resources */,
 				A487B07822CC7ADA004EA220 /* Main.storyboard in Resources */,
 			);

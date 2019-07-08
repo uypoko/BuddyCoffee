@@ -20,16 +20,24 @@ class UserController {
     let db = Firestore.firestore()
     let storageRef = Storage.storage().reference()
     static let authChangedNotification = Notification.Name("UserController.authChanged")
+    var handle: AuthStateDidChangeListenerHandle?
     
-    func fetchBuddyUser(user: User) {
-        db.collection("users").document(user.uid).getDocument { (document, error) in
-            if let document = document, document.exists {
-                guard let emailData = document.data()?["email"], let email = emailData as? String else { return }
-                guard let nameData = document.data()?["name"], let name = nameData as? String else { return }
-                guard let phoneData = document.data()?["phone"], let phone = phoneData as? Int else { return }
-                guard let addressData = document.data()?["address"], let address = addressData as? String else { return }
-                guard let pointData = document.data()?["points"], let points = pointData as? Int else { return }
-                self.buddyUser = BuddyUser(id: user.uid, email: email, name: name, phone: phone, address: address, points: points)
+    func fetchBuddyUser() {
+        // Listen for authentication state
+        handle = Auth.auth().addStateDidChangeListener { (auth, user) in
+            if let user = user {
+                self.db.collection("users").document(user.uid).getDocument { (document, error) in
+                    if let document = document, document.exists {
+                        guard let emailData = document.data()?["email"], let email = emailData as? String else { return }
+                        guard let nameData = document.data()?["name"], let name = nameData as? String else { return }
+                        guard let phoneData = document.data()?["phone"], let phone = phoneData as? Int else { return }
+                        guard let addressData = document.data()?["address"], let address = addressData as? String else { return }
+                        guard let pointData = document.data()?["points"], let points = pointData as? Int else { return }
+                        self.buddyUser = BuddyUser(id: user.uid, email: email, name: name, phone: phone, address: address, points: points)
+                    }
+                }
+            } else {
+                UserController.shared.buddyUser = nil
             }
         }
     }

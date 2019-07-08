@@ -10,9 +10,14 @@ import UIKit
 
 class OrderConfirmationViewController: UIViewController {
 
+    var message: String?
+    @IBOutlet weak var messageLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        if let message = message {
+            messageLabel.text = message
+        }
         // Do any additional setup after loading the view.
     }
     

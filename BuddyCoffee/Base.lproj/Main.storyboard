@@ -108,6 +108,7 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="u9D-SK-NnF" secondAttribute="trailing" id="3Or-6X-89f"/>
+                            <constraint firstItem="u9D-SK-NnF" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="F2r-3Z-O8M"/>
                             <constraint firstItem="iLY-h5-IK8" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.08" id="GNC-Ad-A64"/>
                             <constraint firstItem="iLY-h5-IK8" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="OUU-M7-xxk"/>
                             <constraint firstItem="u9D-SK-NnF" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="YuW-4w-yIy"/>
@@ -117,12 +118,19 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="u9D-SK-NnF" secondAttribute="bottom" id="r3A-ML-NhY"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="F2r-3Z-O8M"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="dU1-2z-6pT"/>
                     <connections>
                         <outlet property="drinkTableView" destination="u9D-SK-NnF" id="yJY-Vq-D5U"/>
+                        <outlet property="drinkTableViewTopConstraint" destination="iBT-Nc-aOk" id="xyv-Ft-BIU"/>
                         <outlet property="memberInfoView" destination="iLY-h5-IK8" id="gWZ-0W-TSe"/>
                         <outlet property="membershipLabel" destination="yjv-rm-xRV" id="icj-rP-dem"/>
+                        <outlet property="updatedDrinkTableViewTopConstraint" destination="F2r-3Z-O8M" id="PpG-bE-32S"/>
                         <outlet property="userImageView" destination="D2L-6H-n0J" id="8sc-vf-Kek"/>
                         <outlet property="userNameLabel" destination="Eeu-oz-wCR" id="eow-GO-faH"/>
                     </connections>
@@ -329,6 +337,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="xeE-CT-9Yx"/>
                     </view>
+                    <connections>
+                        <outlet property="messageLabel" destination="L66-6I-BcI" id="Wnm-O8-WcR"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oVZ-hk-hDJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="km4-6z-xR0" userLabel="Exit" sceneMemberID="exit"/>

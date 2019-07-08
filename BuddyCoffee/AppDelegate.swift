@@ -13,19 +13,11 @@ import Firebase
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var handle: AuthStateDidChangeListenerHandle?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
-        // Listen for authentication state
-        handle = Auth.auth().addStateDidChangeListener { (auth, user) in
-            if let user = user {
-                UserController.shared.fetchBuddyUser(user: user)
-            } else {
-                UserController.shared.buddyUser = nil
-            }
-        }
+        UserController.shared.fetchBuddyUser()
         DrinkController.shared.loadRemoteData()
         return true
     }

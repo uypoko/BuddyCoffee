@@ -77,4 +77,38 @@ class DrinkController {
         }
     }
     
+    func submitOrder(completion: @escaping (Error?) -> Void) {
+        order.setDate()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .medium
+        let dateString = dateFormatter.string(from: order.date)
+        
+       var drinkDataArray: [[String: Any]] = []
+        for drink in order.drinks {
+            var drinkData: [String: Any] = [:]
+            let name = drink.drink.name
+            let price = drink.drink.price
+            let description = drink.drink.description
+            let quantity = drink.quantity
+            drinkData["name"] = name
+            drinkData["price"] = price
+            drinkData["description"] = description
+            drinkData["quantity"] = quantity
+            drinkDataArray.append(drinkData)
+        }
+        let data: [String: Any] = [
+            "date": dateString,
+            "drinks": drinkDataArray
+        ]
+        if let buddyUser = UserController.shared.buddyUser {
+            db.collection("users").document(buddyUser.id).collection("order-history").document(dateString).setData(data) { err in
+                if let err = err {
+                    completion(err)
+                } else {
+                    completion(nil)
+                }
+            }
+        }
+    }
 }

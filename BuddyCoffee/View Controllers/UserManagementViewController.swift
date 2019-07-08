@@ -46,6 +46,7 @@ class UserManagementViewController: UIViewController, FUIAuthDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        updateUI()
     }
     
     /*

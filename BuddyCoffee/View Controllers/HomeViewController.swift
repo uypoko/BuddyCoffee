@@ -17,6 +17,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var membershipLabel: UILabel!
     @IBOutlet weak var drinkTableView: UITableView!
+    @IBOutlet var drinkTableViewTopConstraint: NSLayoutConstraint!
+    @IBOutlet var updatedDrinkTableViewTopConstraint: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +32,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @objc func updateUserUI() {
         if let buddyUser = UserController.shared.buddyUser {
             memberInfoView.isHidden = false
+            drinkTableViewTopConstraint.isActive = true
+            updatedDrinkTableViewTopConstraint.isActive = false
             userNameLabel.text = buddyUser.name
             membershipLabel.text = buddyUser.membershipStatus
             UserController.shared.fetchUserImage { image in
@@ -41,7 +45,11 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             }
         } else {
             memberInfoView.isHidden = true
+            drinkTableViewTopConstraint.isActive = false
+            updatedDrinkTableViewTopConstraint.isActive = true
         }
+        memberInfoView.layoutIfNeeded()
+        drinkTableView.layoutIfNeeded()
     }
     
     @objc func updateDrinkUI() {
