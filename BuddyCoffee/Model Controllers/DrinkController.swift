@@ -87,14 +87,10 @@ class DrinkController {
        var drinkDataArray: [[String: Any]] = []
         for drink in order.drinks {
             var drinkData: [String: Any] = [:]
-            let name = drink.drink.name
-            let price = drink.drink.price
-            let description = drink.drink.description
-            let quantity = drink.quantity
-            drinkData["name"] = name
-            drinkData["price"] = price
-            drinkData["description"] = description
-            drinkData["quantity"] = quantity
+            drinkData["name"] = drink.drink.name
+            drinkData["price"] = drink.drink.price
+            drinkData["description"] = drink.drink.description
+            drinkData["quantity"] = drink.quantity
             drinkDataArray.append(drinkData)
         }
         let data: [String: Any] = [
@@ -103,6 +99,14 @@ class DrinkController {
         ]
         if let buddyUser = UserController.shared.buddyUser {
             db.collection("users").document(buddyUser.id).collection("order-history").document(dateString).setData(data) { err in
+                if let err = err {
+                    completion(err)
+                } else {
+                    completion(nil)
+                }
+            }
+        } else {
+            db.collection("orders").document(dateString).setData(data) { err in
                 if let err = err {
                     completion(err)
                 } else {

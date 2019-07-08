@@ -106,9 +106,10 @@ class CartTableViewController: UITableViewController {
         if segue.identifier == "SubmitOrderSegue" {
             let orderConfirmationViewController = segue.destination as! OrderConfirmationViewController
             if let error = error {
-                orderConfirmationViewController.message = "\(error)"
+                orderConfirmationViewController.message = "Something went wrong!"
+                print(error)
             } else {
-                orderConfirmationViewController.message = "We have got your order.\nPlease keep an eye on your phone 😄"
+                orderConfirmationViewController.message = "We've got your order.\nPlease keep an eye on your phone 😄"
             }
         }
     }
