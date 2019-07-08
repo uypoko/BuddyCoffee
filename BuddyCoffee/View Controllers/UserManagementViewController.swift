@@ -7,16 +7,52 @@
 //
 
 import UIKit
+import FirebaseUI
 
-class UserManagementViewController: UIViewController {
+class UserManagementViewController: UIViewController, FUIAuthDelegate {
 
+    @IBOutlet weak var memberInfoView: UIView!
+    @IBOutlet weak var signInSignOutButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        NotificationCenter.default.addObserver(self, selector: #selector(updateUI), name: UserController.authChangedNotification, object: nil)
     }
     
-
+    @objc func updateUI() {
+        if UserController.shared.buddyUser != nil {
+            memberInfoView.isHidden = false
+            signInSignOutButton.setTitle("Sign Out", for: .normal)
+        } else {
+            memberInfoView.isHidden = true
+            signInSignOutButton.setTitle("Sign In", for: .normal)
+        }
+    }
+    
+    @IBAction func signInSignOutButtonTapped(_ sender: Any) {
+        if signInSignOutButton.currentTitle == "Sign In" {
+            // Create a FirebaseUI sign-in view controller
+            guard let authUI = FUIAuth.defaultAuthUI() else { return }
+            authUI.delegate = self
+            authUI.providers = [FUIEmailAuth()]
+            let authUIViewController = authUI.authViewController()
+            present(authUIViewController, animated: true, completion: nil)
+        } else {
+            UserController.shared.signOut()
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
+    /*
+    func authUI(_ authUI: FUIAuth, didSignInWith authDataResult: AuthDataResult?, error: Error?) {
+    }
+    */
+    
     /*
     // MARK: - Navigation
 
