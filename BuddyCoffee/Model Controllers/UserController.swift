@@ -29,17 +29,11 @@ class UserController {
                 self.db.collection("users").document(user.uid).getDocument { (document, error) in
                     if let document = document, document.exists {
                         guard let emailData = document.data()?["email"], let email = emailData as? String else { return }
-                        let name = user.displayName
-                        var phone: Int?
-                        if let phoneData = document.data()?["phone"] { phone = phoneData as? Int }
-                        var address: String?
-                        if let addressData = document.data()?["address"] { address = addressData as? String }
+                        guard let nameData = document.data()?["name"], let name = nameData as? String else { return }
+                        guard let phoneData = document.data()?["phone"], let phone = phoneData as? Int else { return }
+                        guard let addressData = document.data()?["address"], let address = addressData as? String else { return }
                         guard let pointData = document.data()?["points"], let points = pointData as? Int else { return }
-                        if phone != nil && address != nil {
-                            self.buddyUser = BuddyUser(id: user.uid, email: email, name: name!, phone: phone!, address: address!, points: points)
-                        } else {
-                            self.buddyUser = BuddyUser(id: user.uid, email: email, name: name!, points: points)
-                        }
+                        self.buddyUser = BuddyUser(id: user.uid, email: email, name: name, phone: phone, address: address, points: points)
                     }
                 }
             } else {
@@ -63,9 +57,5 @@ class UserController {
     
     func signOut() {
         try? Auth.auth().signOut()
-    }
-    
-    func uploadProfilePicture() {
-        
     }
 }
