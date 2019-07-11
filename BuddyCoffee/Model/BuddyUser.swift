@@ -12,8 +12,8 @@ class BuddyUser {
     let id: String
     var email: String
     var name: String
-    var phone: Int
-    var address: String
+    var phone: Int?
+    var address: String?
     var points: Int
     var membershipStatus: String {
         var status = "\(points) ⭑ "
@@ -28,6 +28,13 @@ class BuddyUser {
             status = ""
         }
         return status
+    }
+    
+    init(id: String, email: String, name: String, points: Int) {
+        self.id = id
+        self.email = email
+        self.name = name
+        self.points = points
     }
     
     init(id: String, email: String, name: String, phone: Int, address: String, points: Int) {

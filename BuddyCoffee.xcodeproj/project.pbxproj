@@ -12,6 +12,7 @@
 		944F537B22CCB5E0001AD654 /* OrderHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944F537A22CCB5E0001AD654 /* OrderHistory.swift */; };
 		944F537D22CCC389001AD654 /* DrinkTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944F537C22CCC389001AD654 /* DrinkTableViewCell.swift */; };
 		944F538022CCD9B9001AD654 /* DrinkDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944F537F22CCD9B9001AD654 /* DrinkDetailViewController.swift */; };
+		94A922FB22D71BDE0048CE42 /* SignInSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94A922FA22D71BDE0048CE42 /* SignInSignUpViewController.swift */; };
 		94D2AE1722D335EF00BA40F9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 94D2AE1622D335EE00BA40F9 /* GoogleService-Info.plist */; };
 		A487B07322CC7ADA004EA220 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A487B07222CC7ADA004EA220 /* AppDelegate.swift */; };
 		A487B07822CC7ADA004EA220 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A487B07622CC7ADA004EA220 /* Main.storyboard */; };
@@ -34,6 +35,7 @@
 		944F537A22CCB5E0001AD654 /* OrderHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderHistory.swift; sourceTree = "<group>"; };
 		944F537C22CCC389001AD654 /* DrinkTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkTableViewCell.swift; sourceTree = "<group>"; };
 		944F537F22CCD9B9001AD654 /* DrinkDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkDetailViewController.swift; sourceTree = "<group>"; };
+		94A922FA22D71BDE0048CE42 /* SignInSignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInSignUpViewController.swift; sourceTree = "<group>"; };
 		94D2AE1622D335EE00BA40F9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		96E4B8FF9ABA8E6F5407EB8B /* Pods-BuddyCoffee.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BuddyCoffee.debug.xcconfig"; path = "Target Support Files/Pods-BuddyCoffee/Pods-BuddyCoffee.debug.xcconfig"; sourceTree = "<group>"; };
 		A487B06F22CC7ADA004EA220 /* BuddyCoffee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BuddyCoffee.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -73,12 +75,19 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		944F537E22CCD58E001AD654 /* View */ = {
+		944F537E22CCD58E001AD654 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				944F537C22CCC389001AD654 /* DrinkTableViewCell.swift */,
 			);
-			path = View;
+			path = Views;
+			sourceTree = "<group>";
+		};
+		94A922FE22D74CA70048CE42 /* Helper Classes */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Helper Classes";
 			sourceTree = "<group>";
 		};
 		A487B06622CC7ADA004EA220 = {
@@ -102,7 +111,8 @@
 		A487B07122CC7ADA004EA220 /* BuddyCoffee */ = {
 			isa = PBXGroup;
 			children = (
-				944F537E22CCD58E001AD654 /* View */,
+				94A922FE22D74CA70048CE42 /* Helper Classes */,
+				944F537E22CCD58E001AD654 /* Views */,
 				A4C61F6C22CC8895005ED098 /* Model Controllers */,
 				A4C61F6522CC870C005ED098 /* View Controllers */,
 				A4C61F6022CC81B6005ED098 /* Model */,
@@ -135,6 +145,7 @@
 				A4C61F6A22CC87B4005ED098 /* UserManagementViewController.swift */,
 				944F537F22CCD9B9001AD654 /* DrinkDetailViewController.swift */,
 				9446504F22CE22180008E3B2 /* OrderConfirmationViewController.swift */,
+				94A922FA22D71BDE0048CE42 /* SignInSignUpViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -302,6 +313,7 @@
 				944F538022CCD9B9001AD654 /* DrinkDetailViewController.swift in Sources */,
 				A4C61F6922CC8758005ED098 /* CartTableViewController.swift in Sources */,
 				A4C61F6B22CC87B4005ED098 /* UserManagementViewController.swift in Sources */,
+				94A922FB22D71BDE0048CE42 /* SignInSignUpViewController.swift in Sources */,
 				A4C61F6722CC872A005ED098 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

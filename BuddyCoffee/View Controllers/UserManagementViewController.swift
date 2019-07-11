@@ -7,26 +7,49 @@
 //
 
 import UIKit
-import FirebaseUI
 
-class UserManagementViewController: UIViewController, FUIAuthDelegate {
+class UserManagementViewController: UIViewController {
 
     @IBOutlet weak var memberInfoView: UIView!
+    @IBOutlet weak var profilePictureImageView: UIImageView!
+    @IBOutlet weak var changeProfilePictureButton: UIButton!
+    
+    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var phoneTextField: UITextField!
+    @IBOutlet weak var addressTextField: UITextField!
+    
+    @IBOutlet weak var submitButton: UIButton!
+    
     @IBOutlet weak var signInSignOutButton: UIButton!
+    
+    @IBOutlet weak var signInButtonTopToMemberInfoConstraint: NSLayoutConstraint!
+    @IBOutlet weak var signInButtonTopToSuperviewConstraint: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        emailTextField.allowsEditingTextAttributes = false
         NotificationCenter.default.addObserver(self, selector: #selector(updateUI), name: UserController.authChangedNotification, object: nil)
     }
     
     @objc func updateUI() {
-        if UserController.shared.buddyUser != nil {
+        if let buddyUser = UserController.shared.buddyUser {
             memberInfoView.isHidden = false
+            signInButtonTopToMemberInfoConstraint.isActive = true
+            signInButtonTopToSuperviewConstraint.isActive = false
             signInSignOutButton.setTitle("Sign Out", for: .normal)
+            emailTextField.text = buddyUser.email
+            nameTextField.text = buddyUser.name
+            if let phone = buddyUser.phone {
+                phoneTextField.text = "\(phone)"
+            }
+            addressTextField.text = buddyUser.address
         } else {
             memberInfoView.isHidden = true
+            signInButtonTopToMemberInfoConstraint.isActive = false
+            signInButtonTopToSuperviewConstraint.isActive = true
             signInSignOutButton.setTitle("Sign In", for: .normal)
         }
     }
@@ -34,11 +57,7 @@ class UserManagementViewController: UIViewController, FUIAuthDelegate {
     @IBAction func signInSignOutButtonTapped(_ sender: Any) {
         if signInSignOutButton.currentTitle == "Sign In" {
             // Create a FirebaseUI sign-in view controller
-            guard let authUI = FUIAuth.defaultAuthUI() else { return }
-            authUI.delegate = self
-            authUI.providers = [FUIEmailAuth()]
-            let authUIViewController = authUI.authViewController()
-            present(authUIViewController, animated: true, completion: nil)
+            performSegue(withIdentifier: "signInSegue", sender: nil)
         } else {
             UserController.shared.signOut()
         }
@@ -49,10 +68,18 @@ class UserManagementViewController: UIViewController, FUIAuthDelegate {
         updateUI()
     }
     
-    /*
-    func authUI(_ authUI: FUIAuth, didSignInWith authDataResult: AuthDataResult?, error: Error?) {
+    @IBAction func changeProfilePictureTapped(_ sender: Any) {
     }
-    */
+    
+    @IBAction func viewOrderHistoryButtonTapped(_ sender: Any) {
+    }
+    
+    @IBAction func submitButtonTapped(_ sender: Any) {
+    }
+    
+    @IBAction func unwindToUserManagementViewController(segue: UIStoryboardSegue) {
+        
+    }
     
     /*
     // MARK: - Navigation
