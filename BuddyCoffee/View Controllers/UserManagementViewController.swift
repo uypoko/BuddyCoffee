@@ -7,38 +7,58 @@
 //
 
 import UIKit
-import FirebaseUI
 
-class UserManagementViewController: UIViewController, FUIAuthDelegate {
+class UserManagementViewController: UIViewController {
 
     @IBOutlet weak var memberInfoView: UIView!
+    @IBOutlet weak var profilePictureImageView: UIImageView!
+    @IBOutlet weak var changeProfilePictureButton: UIButton!
+    
+    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var phoneTextField: UITextField!
+    @IBOutlet weak var addressTextView: AddressTextView!
+    
+    @IBOutlet weak var submitButton: UIButton!
+    
     @IBOutlet weak var signInSignOutButton: UIButton!
+    
+    @IBOutlet var signInButtonTopToMemberInfoConstraint: NSLayoutConstraint!
+    @IBOutlet var signInButtonTopToSuperviewConstraint: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        addressTextView.configure()
         NotificationCenter.default.addObserver(self, selector: #selector(updateUI), name: UserController.authChangedNotification, object: nil)
     }
     
     @objc func updateUI() {
-        if UserController.shared.buddyUser != nil {
-            memberInfoView.isHidden = false
-            signInSignOutButton.setTitle("Sign Out", for: .normal)
-        } else {
-            memberInfoView.isHidden = true
-            signInSignOutButton.setTitle("Sign In", for: .normal)
+        DispatchQueue.main.async {
+            if let buddyUser = UserController.shared.buddyUser {
+                self.memberInfoView.isHidden = false
+                self.signInButtonTopToSuperviewConstraint.isActive = false
+                self.signInButtonTopToMemberInfoConstraint.isActive = true
+                self.signInSignOutButton.setTitle("Sign Out", for: .normal)
+                self.emailTextField.text = buddyUser.email
+                self.nameTextField.text = buddyUser.name
+                self.phoneTextField.text = "\(buddyUser.phone)"
+                self.addressTextView.text = buddyUser.address
+                self.addressTextView.textColor = .black
+            } else {
+                self.memberInfoView.isHidden = true
+                self.signInButtonTopToMemberInfoConstraint.isActive = false
+                self.signInButtonTopToSuperviewConstraint.isActive = true
+                self.signInSignOutButton.setTitle("Sign In", for: .normal)
+            }
         }
     }
     
     @IBAction func signInSignOutButtonTapped(_ sender: Any) {
         if signInSignOutButton.currentTitle == "Sign In" {
             // Create a FirebaseUI sign-in view controller
-            guard let authUI = FUIAuth.defaultAuthUI() else { return }
-            authUI.delegate = self
-            authUI.providers = [FUIEmailAuth()]
-            let authUIViewController = authUI.authViewController()
-            present(authUIViewController, animated: true, completion: nil)
+            performSegue(withIdentifier: "signInSegue", sender: nil)
         } else {
             UserController.shared.signOut()
         }
@@ -46,13 +66,26 @@ class UserManagementViewController: UIViewController, FUIAuthDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        updateUI()
+        UserController.shared.addAuthStateListener()
     }
     
-    /*
-    func authUI(_ authUI: FUIAuth, didSignInWith authDataResult: AuthDataResult?, error: Error?) {
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        UserController.shared.removeAuthStateListener()
     }
-    */
+    
+    @IBAction func changeProfilePictureTapped(_ sender: Any) {
+    }
+    
+    @IBAction func viewOrderHistoryButtonTapped(_ sender: Any) {
+    }
+    
+    @IBAction func submitButtonTapped(_ sender: Any) {
+    }
+    
+    @IBAction func unwindToUserManagementViewController(segue: UIStoryboardSegue) {
+        
+    }
     
     /*
     // MARK: - Navigation

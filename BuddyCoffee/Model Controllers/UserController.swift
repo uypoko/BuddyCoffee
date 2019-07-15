@@ -22,7 +22,7 @@ class UserController {
     static let authChangedNotification = Notification.Name("UserController.authChanged")
     var handle: AuthStateDidChangeListenerHandle?
     
-    func fetchBuddyUser() {
+    func addAuthStateListener() {
         // Listen for authentication state
         handle = Auth.auth().addStateDidChangeListener { (auth, user) in
             if let user = user {
@@ -32,14 +32,19 @@ class UserController {
                         guard let nameData = document.data()?["name"], let name = nameData as? String else { return }
                         guard let phoneData = document.data()?["phone"], let phone = phoneData as? Int else { return }
                         guard let addressData = document.data()?["address"], let address = addressData as? String else { return }
-                        guard let pointData = document.data()?["points"], let points = pointData as? Int else { return }
+                        var points = 0 // The server takes a while to create this field in the database after a registration
+                        if let pointData = document.data()?["points"] { points = pointData as! Int }
                         self.buddyUser = BuddyUser(id: user.uid, email: email, name: name, phone: phone, address: address, points: points)
                     }
                 }
             } else {
-                UserController.shared.buddyUser = nil
+                self.buddyUser = nil
             }
         }
+    }
+    
+    func removeAuthStateListener() {
+        Auth.auth().removeStateDidChangeListener(handle!)
     }
     
     func fetchUserImage(completion: @escaping (UIImage?) -> Void) {
@@ -57,5 +62,41 @@ class UserController {
     
     func signOut() {
         try? Auth.auth().signOut()
+    }
+    
+    func uploadProfilePicture() {
+        
+    }
+    
+    func signIn(email: String, password: String, completion: @escaping (Error?) -> Void) {
+        Auth.auth().signIn(withEmail: email, password: password) { (authData, error) in
+            if error == nil {
+                completion(nil)
+            } else {
+                completion(error)
+            }
+        }
+    }
+    
+    func signUp(email: String, password: String, name: String, phone: Int, address: String, completion: @escaping (Error?) -> Void) {
+        Auth.auth().createUser(withEmail: email, password: password) { authData, error in
+            if let user = authData?.user, error == nil {
+                let data: [String: Any] = [
+                    "name": name,
+                    "phone": phone,
+                    "address": address
+                ]
+                print(user.uid)
+                self.db.collection("users").document(user.uid).setData(data, merge: true) { err in
+                    if let err = err {
+                        print("Error writing document: \(err)")
+                    } else {
+                        completion(nil)
+                    }
+                }
+            } else {
+                completion(error)
+            }
+        }
     }
 }

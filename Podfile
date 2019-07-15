@@ -9,6 +9,4 @@ target 'BuddyCoffee' do
 pod 'Firebase/Core'
 pod 'Firebase/Firestore'
 pod 'Firebase/Storage'
-pod 'FirebaseUI/Auth'
-pod 'FirebaseUI/Email'
 end

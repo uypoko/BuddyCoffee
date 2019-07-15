@@ -7,11 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9420290022DA096100CE77B5 /* Validators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942028FF22DA096100CE77B5 /* Validators.swift */; };
+		9420290222DA214C00CE77B5 /* AddressTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9420290122DA214C00CE77B5 /* AddressTextView.swift */; };
 		9446505022CE22180008E3B2 /* OrderConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9446504F22CE22180008E3B2 /* OrderConfirmationViewController.swift */; };
 		944F537922CCB561001AD654 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944F537822CCB561001AD654 /* Order.swift */; };
 		944F537B22CCB5E0001AD654 /* OrderHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944F537A22CCB5E0001AD654 /* OrderHistory.swift */; };
 		944F537D22CCC389001AD654 /* DrinkTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944F537C22CCC389001AD654 /* DrinkTableViewCell.swift */; };
 		944F538022CCD9B9001AD654 /* DrinkDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944F537F22CCD9B9001AD654 /* DrinkDetailViewController.swift */; };
+		94A922FB22D71BDE0048CE42 /* SignInSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94A922FA22D71BDE0048CE42 /* SignInSignUpViewController.swift */; };
+		94D0D86722DC7BF000DD3CB7 /* UITextField+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94D0D86622DC7BF000DD3CB7 /* UITextField+Extensions.swift */; };
+		94D0D86922DC7F7C00DD3CB7 /* UITextView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94D0D86822DC7F7C00DD3CB7 /* UITextView+Extensions.swift */; };
 		94D2AE1722D335EF00BA40F9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 94D2AE1622D335EE00BA40F9 /* GoogleService-Info.plist */; };
 		A487B07322CC7ADA004EA220 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A487B07222CC7ADA004EA220 /* AppDelegate.swift */; };
 		A487B07822CC7ADA004EA220 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A487B07622CC7ADA004EA220 /* Main.storyboard */; };
@@ -29,11 +34,16 @@
 
 /* Begin PBXFileReference section */
 		23F116F90622FBBA1CCE2D6F /* Pods_BuddyCoffee.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BuddyCoffee.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		942028FF22DA096100CE77B5 /* Validators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Validators.swift; path = "BuddyCoffee/View Controllers/Validators.swift"; sourceTree = SOURCE_ROOT; };
+		9420290122DA214C00CE77B5 /* AddressTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressTextView.swift; sourceTree = "<group>"; };
 		9446504F22CE22180008E3B2 /* OrderConfirmationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderConfirmationViewController.swift; sourceTree = "<group>"; };
 		944F537822CCB561001AD654 /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		944F537A22CCB5E0001AD654 /* OrderHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderHistory.swift; sourceTree = "<group>"; };
 		944F537C22CCC389001AD654 /* DrinkTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkTableViewCell.swift; sourceTree = "<group>"; };
 		944F537F22CCD9B9001AD654 /* DrinkDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkDetailViewController.swift; sourceTree = "<group>"; };
+		94A922FA22D71BDE0048CE42 /* SignInSignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInSignUpViewController.swift; sourceTree = "<group>"; };
+		94D0D86622DC7BF000DD3CB7 /* UITextField+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extensions.swift"; sourceTree = "<group>"; };
+		94D0D86822DC7F7C00DD3CB7 /* UITextView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+Extensions.swift"; sourceTree = "<group>"; };
 		94D2AE1622D335EE00BA40F9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		96E4B8FF9ABA8E6F5407EB8B /* Pods-BuddyCoffee.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BuddyCoffee.debug.xcconfig"; path = "Target Support Files/Pods-BuddyCoffee/Pods-BuddyCoffee.debug.xcconfig"; sourceTree = "<group>"; };
 		A487B06F22CC7ADA004EA220 /* BuddyCoffee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BuddyCoffee.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -73,12 +83,30 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		944F537E22CCD58E001AD654 /* View */ = {
+		944F537E22CCD58E001AD654 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				944F537C22CCC389001AD654 /* DrinkTableViewCell.swift */,
+				9420290122DA214C00CE77B5 /* AddressTextView.swift */,
 			);
-			path = View;
+			path = Views;
+			sourceTree = "<group>";
+		};
+		94A922FE22D74CA70048CE42 /* Helper Classes */ = {
+			isa = PBXGroup;
+			children = (
+				942028FF22DA096100CE77B5 /* Validators.swift */,
+			);
+			path = "Helper Classes";
+			sourceTree = "<group>";
+		};
+		94D0D86522DC7BB500DD3CB7 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				94D0D86622DC7BF000DD3CB7 /* UITextField+Extensions.swift */,
+				94D0D86822DC7F7C00DD3CB7 /* UITextView+Extensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		A487B06622CC7ADA004EA220 = {
@@ -102,7 +130,9 @@
 		A487B07122CC7ADA004EA220 /* BuddyCoffee */ = {
 			isa = PBXGroup;
 			children = (
-				944F537E22CCD58E001AD654 /* View */,
+				94D0D86522DC7BB500DD3CB7 /* Extensions */,
+				94A922FE22D74CA70048CE42 /* Helper Classes */,
+				944F537E22CCD58E001AD654 /* Views */,
 				A4C61F6C22CC8895005ED098 /* Model Controllers */,
 				A4C61F6522CC870C005ED098 /* View Controllers */,
 				A4C61F6022CC81B6005ED098 /* Model */,
@@ -135,6 +165,7 @@
 				A4C61F6A22CC87B4005ED098 /* UserManagementViewController.swift */,
 				944F537F22CCD9B9001AD654 /* DrinkDetailViewController.swift */,
 				9446504F22CE22180008E3B2 /* OrderConfirmationViewController.swift */,
+				94A922FA22D71BDE0048CE42 /* SignInSignUpViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -291,17 +322,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				A4C61F6222CC81EA005ED098 /* BuddyUser.swift in Sources */,
+				94D0D86922DC7F7C00DD3CB7 /* UITextView+Extensions.swift in Sources */,
 				A4C61F6422CC8372005ED098 /* Drink.swift in Sources */,
 				A4C61F7022CC88BB005ED098 /* UserController.swift in Sources */,
+				94D0D86722DC7BF000DD3CB7 /* UITextField+Extensions.swift in Sources */,
 				944F537D22CCC389001AD654 /* DrinkTableViewCell.swift in Sources */,
 				9446505022CE22180008E3B2 /* OrderConfirmationViewController.swift in Sources */,
 				944F537922CCB561001AD654 /* Order.swift in Sources */,
+				9420290222DA214C00CE77B5 /* AddressTextView.swift in Sources */,
 				A487B07322CC7ADA004EA220 /* AppDelegate.swift in Sources */,
 				944F537B22CCB5E0001AD654 /* OrderHistory.swift in Sources */,
+				9420290022DA096100CE77B5 /* Validators.swift in Sources */,
 				A4C61F6E22CC88B1005ED098 /* DrinkController.swift in Sources */,
 				944F538022CCD9B9001AD654 /* DrinkDetailViewController.swift in Sources */,
 				A4C61F6922CC8758005ED098 /* CartTableViewController.swift in Sources */,
 				A4C61F6B22CC87B4005ED098 /* UserManagementViewController.swift in Sources */,
+				94A922FB22D71BDE0048CE42 /* SignInSignUpViewController.swift in Sources */,
 				A4C61F6722CC872A005ED098 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

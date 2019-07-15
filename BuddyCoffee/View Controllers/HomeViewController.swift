@@ -25,31 +25,30 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         drinkTableView.dataSource = self
         drinkTableView.delegate = self
         // Do any additional setup after loading the view.
-        NotificationCenter.default.addObserver(self, selector: #selector(updateDrinkUI), name: DrinkController.drinkUpdatedNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateUserUI), name: UserController.authChangedNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateDrinkUI), name: DrinkController.drinkUpdatedNotification, object: nil)
+        updateDrinkUI()
     }
     
     @objc func updateUserUI() {
-        if let buddyUser = UserController.shared.buddyUser {
-            memberInfoView.isHidden = false
-            drinkTableViewTopConstraint.isActive = true
-            updatedDrinkTableViewTopConstraint.isActive = false
-            userNameLabel.text = buddyUser.name
-            membershipLabel.text = buddyUser.membershipStatus
-            UserController.shared.fetchUserImage { image in
-                if let image = image {
-                    DispatchQueue.main.async {
+        DispatchQueue.main.async {
+            if let buddyUser = UserController.shared.buddyUser {
+                self.memberInfoView.isHidden = false
+                self.updatedDrinkTableViewTopConstraint.isActive = false
+                self.drinkTableViewTopConstraint.isActive = true
+                self.userNameLabel.text = buddyUser.name
+                self.membershipLabel.text = buddyUser.membershipStatus
+                UserController.shared.fetchUserImage { image in
+                    if let image = image {
                         self.userImageView.image = image
                     }
                 }
+            } else {
+                self.memberInfoView.isHidden = true
+                self.drinkTableViewTopConstraint.isActive = false
+                self.updatedDrinkTableViewTopConstraint.isActive = true
             }
-        } else {
-            memberInfoView.isHidden = true
-            drinkTableViewTopConstraint.isActive = false
-            updatedDrinkTableViewTopConstraint.isActive = true
         }
-        memberInfoView.layoutIfNeeded()
-        drinkTableView.layoutIfNeeded()
     }
     
     @objc func updateDrinkUI() {
@@ -93,6 +92,16 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             let drinkDetailViewController = segue.destination as! DrinkDetailViewController
             drinkDetailViewController.drink = drink
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        UserController.shared.addAuthStateListener()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        UserController.shared.removeAuthStateListener()
     }
 
 }
