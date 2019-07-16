@@ -99,4 +99,53 @@ class UserController {
             }
         }
     }
+    
+    func updateInformation(name: String, phone: Int, address: String, completion: @escaping (Error?) -> Void) {
+        guard let user = buddyUser else { return }
+        db.collection("users").document(user.id).setData([
+            "name": name,
+            "phone": phone,
+            "address": address
+        ], merge: true) { error in
+            if let error = error {
+                completion(error)
+            } else {
+                completion(nil)
+            }
+        }
+    }
+    
+    func reloadUserInformation() {
+        guard let user = buddyUser else { return }
+        db.collection("users").document(user.id).getDocument { (document, error) in
+            if let document = document, document.exists {
+                guard let emailData = document.data()?["email"], let email = emailData as? String else { return }
+                guard let nameData = document.data()?["name"], let name = nameData as? String else { return }
+                guard let phoneData = document.data()?["phone"], let phone = phoneData as? Int else { return }
+                guard let addressData = document.data()?["address"], let address = addressData as? String else { return }
+                guard let pointsData = document.data()?["points"], let points = pointsData as? Int else { return }
+                self.buddyUser = BuddyUser(id: user.id, email: email, name: name, phone: phone, address: address, points: points)
+            }
+        }
+    }
+    
+    func updatePassword(currentPassword: String ,newPassword: String, completion: @escaping (Error?) -> Void) {
+        guard let user = Auth.auth().currentUser else { return }
+        let credential: AuthCredential = EmailAuthProvider.credential(withEmail: user.email!, password: currentPassword)
+        
+        user.reauthenticate(with: credential) { authData, error in
+            if let error = error {
+                completion(error)
+            } else {
+                user.updatePassword(to: newPassword) { error in
+                    if let error = error {
+                        completion(error)
+                    } else {
+                        completion(nil)
+                    }
+                }
+            }
+        }
+    }
+
 }

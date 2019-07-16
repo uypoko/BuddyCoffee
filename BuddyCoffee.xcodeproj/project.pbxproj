@@ -14,6 +14,8 @@
 		944F537B22CCB5E0001AD654 /* OrderHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944F537A22CCB5E0001AD654 /* OrderHistory.swift */; };
 		944F537D22CCC389001AD654 /* DrinkTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944F537C22CCC389001AD654 /* DrinkTableViewCell.swift */; };
 		944F538022CCD9B9001AD654 /* DrinkDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944F537F22CCD9B9001AD654 /* DrinkDetailViewController.swift */; };
+		9457824222DDC26A00FBCA92 /* UpdatePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9457824122DDC26A00FBCA92 /* UpdatePasswordViewController.swift */; };
+		9457824422DDCEAF00FBCA92 /* OrderHistoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9457824322DDCEAF00FBCA92 /* OrderHistoryTableViewController.swift */; };
 		94A922FB22D71BDE0048CE42 /* SignInSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94A922FA22D71BDE0048CE42 /* SignInSignUpViewController.swift */; };
 		94D0D86722DC7BF000DD3CB7 /* UITextField+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94D0D86622DC7BF000DD3CB7 /* UITextField+Extensions.swift */; };
 		94D0D86922DC7F7C00DD3CB7 /* UITextView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94D0D86822DC7F7C00DD3CB7 /* UITextView+Extensions.swift */; };
@@ -41,6 +43,8 @@
 		944F537A22CCB5E0001AD654 /* OrderHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderHistory.swift; sourceTree = "<group>"; };
 		944F537C22CCC389001AD654 /* DrinkTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkTableViewCell.swift; sourceTree = "<group>"; };
 		944F537F22CCD9B9001AD654 /* DrinkDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkDetailViewController.swift; sourceTree = "<group>"; };
+		9457824122DDC26A00FBCA92 /* UpdatePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePasswordViewController.swift; sourceTree = "<group>"; };
+		9457824322DDCEAF00FBCA92 /* OrderHistoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderHistoryTableViewController.swift; sourceTree = "<group>"; };
 		94A922FA22D71BDE0048CE42 /* SignInSignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInSignUpViewController.swift; sourceTree = "<group>"; };
 		94D0D86622DC7BF000DD3CB7 /* UITextField+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extensions.swift"; sourceTree = "<group>"; };
 		94D0D86822DC7F7C00DD3CB7 /* UITextView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+Extensions.swift"; sourceTree = "<group>"; };
@@ -166,6 +170,8 @@
 				944F537F22CCD9B9001AD654 /* DrinkDetailViewController.swift */,
 				9446504F22CE22180008E3B2 /* OrderConfirmationViewController.swift */,
 				94A922FA22D71BDE0048CE42 /* SignInSignUpViewController.swift */,
+				9457824122DDC26A00FBCA92 /* UpdatePasswordViewController.swift */,
+				9457824322DDCEAF00FBCA92 /* OrderHistoryTableViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -326,6 +332,8 @@
 				A4C61F6422CC8372005ED098 /* Drink.swift in Sources */,
 				A4C61F7022CC88BB005ED098 /* UserController.swift in Sources */,
 				94D0D86722DC7BF000DD3CB7 /* UITextField+Extensions.swift in Sources */,
+				9457824422DDCEAF00FBCA92 /* OrderHistoryTableViewController.swift in Sources */,
+				9457824222DDC26A00FBCA92 /* UpdatePasswordViewController.swift in Sources */,
 				944F537D22CCC389001AD654 /* DrinkTableViewCell.swift in Sources */,
 				9446505022CE22180008E3B2 /* OrderConfirmationViewController.swift in Sources */,
 				944F537922CCB561001AD654 /* Order.swift in Sources */,

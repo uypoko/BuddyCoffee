@@ -81,6 +81,33 @@ class UserManagementViewController: UIViewController {
     }
     
     @IBAction func submitButtonTapped(_ sender: Any) {
+        do {
+            let name = try nameTextField.validatedText(validationType: .requiredField(field: "Name"))
+            let phone = try phoneTextField.validatedText(validationType: .phone)
+            let address = try addressTextView.validatedText(validationType: .requiredField(field: "Address"))
+            UserController.shared.updateInformation(name: name, phone: Int(phone)!, address: address) { error in
+                if error == nil {
+                    self.showAlert(message: "Information updated!") { _ in
+                        UserController.shared.reloadUserInformation()
+                    }
+                } else {
+                    self.showAlert(message: "Couldn't update information", completion: nil)
+                }
+            }
+        } catch(let error) {
+            showAlert(message: (error as! ValidationError).message, completion: nil)
+        }
+        
+    }
+    
+    func showAlert(message: String, completion: ((UIAlertAction) -> Void)?) {
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: completion))
+        present(alert, animated: true, completion: nil)
+    }
+    
+    @IBAction func updatePasswordTapped(_ sender: Any) {
+        performSegue(withIdentifier: "UpdatePasswordSegue", sender: nil)
     }
     
     @IBAction func unwindToUserManagementViewController(segue: UIStoryboardSegue) {
