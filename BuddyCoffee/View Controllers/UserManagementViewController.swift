@@ -77,9 +77,6 @@ class UserManagementViewController: UIViewController {
     @IBAction func changeProfilePictureTapped(_ sender: Any) {
     }
     
-    @IBAction func viewOrderHistoryButtonTapped(_ sender: Any) {
-    }
-    
     @IBAction func submitButtonTapped(_ sender: Any) {
         do {
             let name = try nameTextField.validatedText(validationType: .requiredField(field: "Name"))
@@ -108,6 +105,10 @@ class UserManagementViewController: UIViewController {
     
     @IBAction func updatePasswordTapped(_ sender: Any) {
         performSegue(withIdentifier: "UpdatePasswordSegue", sender: nil)
+    }
+    
+    @IBAction func viewOrderHistoryButtonTapped(_ sender: Any) {
+        performSegue(withIdentifier: "OrderHistorySegue", sender: nil)
     }
     
     @IBAction func unwindToUserManagementViewController(segue: UIStoryboardSegue) {

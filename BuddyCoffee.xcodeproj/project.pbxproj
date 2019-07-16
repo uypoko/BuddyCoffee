@@ -16,6 +16,7 @@
 		944F538022CCD9B9001AD654 /* DrinkDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944F537F22CCD9B9001AD654 /* DrinkDetailViewController.swift */; };
 		9457824222DDC26A00FBCA92 /* UpdatePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9457824122DDC26A00FBCA92 /* UpdatePasswordViewController.swift */; };
 		9457824422DDCEAF00FBCA92 /* OrderHistoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9457824322DDCEAF00FBCA92 /* OrderHistoryTableViewController.swift */; };
+		9457824622DDF04100FBCA92 /* OrderHistoryDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9457824522DDF04100FBCA92 /* OrderHistoryDetailTableViewController.swift */; };
 		94A922FB22D71BDE0048CE42 /* SignInSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94A922FA22D71BDE0048CE42 /* SignInSignUpViewController.swift */; };
 		94D0D86722DC7BF000DD3CB7 /* UITextField+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94D0D86622DC7BF000DD3CB7 /* UITextField+Extensions.swift */; };
 		94D0D86922DC7F7C00DD3CB7 /* UITextView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94D0D86822DC7F7C00DD3CB7 /* UITextView+Extensions.swift */; };
@@ -45,6 +46,7 @@
 		944F537F22CCD9B9001AD654 /* DrinkDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkDetailViewController.swift; sourceTree = "<group>"; };
 		9457824122DDC26A00FBCA92 /* UpdatePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePasswordViewController.swift; sourceTree = "<group>"; };
 		9457824322DDCEAF00FBCA92 /* OrderHistoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderHistoryTableViewController.swift; sourceTree = "<group>"; };
+		9457824522DDF04100FBCA92 /* OrderHistoryDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderHistoryDetailTableViewController.swift; sourceTree = "<group>"; };
 		94A922FA22D71BDE0048CE42 /* SignInSignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInSignUpViewController.swift; sourceTree = "<group>"; };
 		94D0D86622DC7BF000DD3CB7 /* UITextField+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extensions.swift"; sourceTree = "<group>"; };
 		94D0D86822DC7F7C00DD3CB7 /* UITextView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+Extensions.swift"; sourceTree = "<group>"; };
@@ -172,6 +174,7 @@
 				94A922FA22D71BDE0048CE42 /* SignInSignUpViewController.swift */,
 				9457824122DDC26A00FBCA92 /* UpdatePasswordViewController.swift */,
 				9457824322DDCEAF00FBCA92 /* OrderHistoryTableViewController.swift */,
+				9457824522DDF04100FBCA92 /* OrderHistoryDetailTableViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -346,6 +349,7 @@
 				A4C61F6922CC8758005ED098 /* CartTableViewController.swift in Sources */,
 				A4C61F6B22CC87B4005ED098 /* UserManagementViewController.swift in Sources */,
 				94A922FB22D71BDE0048CE42 /* SignInSignUpViewController.swift in Sources */,
+				9457824622DDF04100FBCA92 /* OrderHistoryDetailTableViewController.swift in Sources */,
 				A4C61F6722CC872A005ED098 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

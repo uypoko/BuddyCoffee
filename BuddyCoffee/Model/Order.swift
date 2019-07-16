@@ -18,6 +18,11 @@ struct Order: Codable, Equatable, Comparable {
         date = Date()
     }
     
+    init(drinks: [DrinkInOrder], date: Date) {
+        self.drinks = drinks
+        self.date = date
+    }
+    
     mutating func setDate() {
         date = Date()
     }
