@@ -77,7 +77,7 @@ class DrinkController {
         }
     }
     
-    func submitOrder(completion: @escaping (Error?) -> Void) {
+    func submitOrder(email: String, name: String, phone: Int, address: String, total: Int, completion: @escaping (Error?) -> Void) {
         order.setDate()
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .medium
@@ -94,8 +94,13 @@ class DrinkController {
             drinkDataArray.append(drinkData)
         }
         let data: [String: Any] = [
+            "email": email,
+            "name": name,
+            "phone": phone,
+            "address": address,
             "date": dateString,
-            "drinks": drinkDataArray
+            "drinks": drinkDataArray,
+            "total": total
         ]
         if let buddyUser = UserController.shared.buddyUser {
             db.collection("users").document(buddyUser.id).collection("order-history").document(dateString).setData(data) { err in

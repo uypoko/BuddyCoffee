@@ -13,11 +13,29 @@ import Firebase
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var orderTabBarItem: UITabBarItem!
+    
+    @objc func updateOrderBagde() {
+        switch DrinkController.shared.order.drinks.count {
+        case 0:
+            orderTabBarItem.badgeValue = nil
+        case let count:
+            orderTabBarItem.badgeValue = "\(count)"
+        }
+    }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
         DrinkController.shared.loadRemoteData()
+        // Show how many items have been added
+        orderTabBarItem = (self.window!.rootViewController! as! UITabBarController).viewControllers![1].tabBarItem
+        NotificationCenter.default.addObserver(self, selector: #selector(updateOrderBagde), name: DrinkController.orderUpdatedNotification, object: nil)
+        updateOrderBagde()
+        // Set up cache
+        let temporaryDirectory = NSTemporaryDirectory()
+        let urlCache = URLCache(memoryCapacity: 25_000_000, diskCapacity: 50_000_000, diskPath: temporaryDirectory)
+        URLCache.shared = urlCache
         return true
     }
 

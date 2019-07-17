@@ -65,7 +65,8 @@ class SignInSignUpViewController: UIViewController {
                     if let error = error {
                         self.showAlert(message: error.localizedDescription, completion: nil)
                     } else {
-                        self.performSegue(withIdentifier: "didSignInSignUpSegue", sender: nil)
+                        // Dismiss to UserManagementViewController
+                        self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
                     }
                 }
             case 1:

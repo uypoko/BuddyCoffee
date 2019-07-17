@@ -41,6 +41,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 UserController.shared.fetchUserImage { image in
                     if let image = image {
                         self.userImageView.image = image
+                    } else {
+                        self.userImageView.isHidden = true
                     }
                 }
             } else {
@@ -78,6 +80,10 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80.0
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        drinkTableView.deselectRow(at: indexPath, animated: true)
     }
     
     // MARK: - Navigation
