@@ -17,8 +17,11 @@ class DeliveryAddressViewController: UIViewController {
     @IBOutlet weak var phoneNumberField: UITextField!
     @IBOutlet weak var addressTextView: AddressTextView!
     
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        activityIndicator.isHidden = true
         addressTextView.configure()
         // Do any additional setup after loading the view.
         NotificationCenter.default.addObserver(self, selector: #selector(updateUI), name: DrinkController.orderUpdatedNotification, object: nil)
@@ -66,7 +69,11 @@ class DeliveryAddressViewController: UIViewController {
     }
     
     func uploadOrder(email: String, name: String, phone: Int, address: String, total: Int) {
+        activityIndicator.isHidden = false
+        activityIndicator.startAnimating()
         DrinkController.shared.submitOrder(email: email, name: name, phone: phone, address: address, total: total) { error in
+            self.activityIndicator.stopAnimating()
+            self.activityIndicator.isHidden = true
             if let error = error {
                 self.showAlert(message: error.localizedDescription, completion: nil)
             } else {

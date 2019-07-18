@@ -14,9 +14,11 @@ class UpdatePasswordViewController: UIViewController {
     @IBOutlet weak var newPasswordField: UITextField!
     @IBOutlet weak var reTypeNewPasswordField: UITextField!
     
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        activityIndicator.isHidden = true
         // Do any additional setup after loading the view.
     }
     
@@ -25,11 +27,15 @@ class UpdatePasswordViewController: UIViewController {
             let currentPassword = try currentPasswordField.validatedText(validationType: .password)
             let newPassword = try newPasswordField.validatedText(validationType: .password)
             let reTypeNewPassword = try reTypeNewPasswordField.validatedText(validationType: .password)
-            if newPassword != reTypeNewPassword {
+            guard newPassword == reTypeNewPassword else {
                 showAlert(message: "Retype New Password has to match New Password!", completion: nil)
                 return
             }
+            activityIndicator.isHidden = false
+            activityIndicator.startAnimating()
             UserController.shared.updatePassword(currentPassword: currentPassword, newPassword: newPassword) { error in
+                self.activityIndicator.stopAnimating()
+                self.activityIndicator.isHidden = true
                 if let error = error {
                     self.showAlert(message: error.localizedDescription, completion: nil)
                 } else {

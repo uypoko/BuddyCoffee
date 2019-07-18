@@ -10,6 +10,7 @@ import UIKit
 
 class UserManagementViewController: UIViewController {
 
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var memberInfoView: UIView!
     @IBOutlet weak var profilePictureImageView: UIImageView!
     @IBOutlet weak var changeProfilePictureButton: UIButton!
@@ -23,23 +24,22 @@ class UserManagementViewController: UIViewController {
     
     @IBOutlet weak var signInSignOutButton: UIButton!
     
-    @IBOutlet var signInButtonTopToMemberInfoConstraint: NSLayoutConstraint!
-    @IBOutlet var signInButtonTopToSuperviewConstraint: NSLayoutConstraint!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        memberInfoView.isHidden = true
+        activityIndicator.isHidden = true
         // Do any additional setup after loading the view.
         addressTextView.configure()
         NotificationCenter.default.addObserver(self, selector: #selector(updateUI), name: UserController.authChangedNotification, object: nil)
+        registerForKeyboardNotifications()
     }
     
     @objc func updateUI() {
         DispatchQueue.main.async {
             if let buddyUser = UserController.shared.buddyUser {
                 self.memberInfoView.isHidden = false
-                self.signInButtonTopToSuperviewConstraint.isActive = false
-                self.signInButtonTopToMemberInfoConstraint.isActive = true
                 self.signInSignOutButton.setTitle("Sign Out", for: .normal)
                 self.emailTextField.text = buddyUser.email
                 self.nameTextField.text = buddyUser.name
@@ -48,11 +48,28 @@ class UserManagementViewController: UIViewController {
                 self.addressTextView.textColor = .black
             } else {
                 self.memberInfoView.isHidden = true
-                self.signInButtonTopToMemberInfoConstraint.isActive = false
-                self.signInButtonTopToSuperviewConstraint.isActive = true
                 self.signInSignOutButton.setTitle("Sign In", for: .normal)
             }
         }
+    }
+    
+    func registerForKeyboardNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(onKeyboardAppear), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(onKeyboardDisappear), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc func onKeyboardAppear(_ notification: NSNotification) {
+        let info = notification.userInfo!
+        let rect: CGRect = info[UIResponder.keyboardFrameBeginUserInfoKey] as! CGRect
+        let kbSize = rect.size
+        let insets = UIEdgeInsets(top: 0, left: 0, bottom: kbSize.height, right: 0)
+        scrollView.contentInset = insets
+        scrollView.scrollIndicatorInsets = insets
+    }
+    
+    @objc func onKeyboardDisappear(_ notification: NSNotification) {
+        scrollView.contentInset = UIEdgeInsets.zero
+        scrollView.scrollIndicatorInsets = UIEdgeInsets.zero
     }
     
     @IBAction func signInSignOutButtonTapped(_ sender: Any) {
@@ -82,7 +99,11 @@ class UserManagementViewController: UIViewController {
             let name = try nameTextField.validatedText(validationType: .requiredField(field: "Name"))
             let phone = try phoneTextField.validatedText(validationType: .phone)
             let address = try addressTextView.validatedText(validationType: .requiredField(field: "Address"))
+            activityIndicator.isHidden = false
+            activityIndicator.startAnimating()
             UserController.shared.updateInformation(name: name, phone: Int(phone)!, address: address) { error in
+                self.activityIndicator.stopAnimating()
+                self.activityIndicator.isHidden = true
                 if error == nil {
                     self.showAlert(message: "Information updated!") { _ in
                         UserController.shared.reloadUserInformation()

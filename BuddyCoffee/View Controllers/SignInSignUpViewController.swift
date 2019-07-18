@@ -10,58 +10,77 @@ import UIKit
 
 class SignInSignUpViewController: UIViewController {
 
+    @IBOutlet weak var scrollView: UIScrollView!
+    
     @IBOutlet weak var segmentedControl: UISegmentedControl!
-    @IBOutlet weak var emailPasswordStackView: UIStackView!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
-    @IBOutlet weak var userInfoStackView: UIStackView!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var phoneTextField: UITextField!
     @IBOutlet weak var addressTextView: AddressTextView!
+    @IBOutlet weak var submitButton: UIButton!
     
-    @IBOutlet weak var emailPasswordCenterYConstraint: NSLayoutConstraint!
-    @IBOutlet weak var emailPasswordBottomToUserInfoConstraint: NSLayoutConstraint!
-    @IBOutlet weak var submitTopToUserInfoConstraint: NSLayoutConstraint!
-    @IBOutlet weak var submitTopToEmailPasswordConstraint: NSLayoutConstraint!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        userInfoStackView.isHidden = true
+        activityIndicator.isHidden = true
         addressTextView.configure()
+        
+        updateUI()
+        registerForKeyboardNotifications()
     }
     
-    @IBAction func segmentedControlValueChanged(_ sender: Any) {
+    func registerForKeyboardNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(onKeyboardAppear), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(onKeyboardDisappear), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc func onKeyboardAppear(_ notification: NSNotification) {
+        let info = notification.userInfo!
+        let rect: CGRect = info[UIResponder.keyboardFrameBeginUserInfoKey] as! CGRect
+        let kbSize = rect.size
+        let insets = UIEdgeInsets(top: 0, left: 0, bottom: kbSize.height, right: 0)
+        scrollView.contentInset = insets
+        scrollView.scrollIndicatorInsets = insets
+    }
+    
+    @objc func onKeyboardDisappear(_ notification: NSNotification) {
+        scrollView.contentInset = UIEdgeInsets.zero
+        scrollView.scrollIndicatorInsets = UIEdgeInsets.zero
+    }
+    
+    func updateUI() {
         switch segmentedControl.selectedSegmentIndex {
         case 0:
-            userInfoStackView.isHidden = true
-            emailPasswordBottomToUserInfoConstraint.isActive = false
-            submitTopToUserInfoConstraint.isActive = false
-            emailPasswordCenterYConstraint.isActive = true
-            submitTopToEmailPasswordConstraint.isActive = true
+            nameTextField.isHidden = true
+            phoneTextField.isHidden = true
+            addressTextView.isHidden = true
         case 1:
-            userInfoStackView.isHidden = false
-            emailPasswordCenterYConstraint.isActive = false
-            submitTopToEmailPasswordConstraint.isActive = false
-            emailPasswordBottomToUserInfoConstraint.isActive = true
-            submitTopToUserInfoConstraint.isActive = true
+            nameTextField.isHidden = false
+            phoneTextField.isHidden = false
+            addressTextView.isHidden = false
         default:
             break
         }
     }
     
+    @IBAction func segmentedControlValueChanged(_ sender: Any) {
+        updateUI()
+    }
+    
     @IBAction func submitButtonTapped(_ sender: Any) {
-        let activityView = UIActivityIndicatorView(style: .whiteLarge)
-        activityView.center = view.center
-        view.addSubview(activityView)
-        activityView.startAnimating()
         do {
             let email = try emailTextField.validatedText(validationType: .email)
             let password = try passwordTextField.validatedText(validationType: .password)
             switch segmentedControl.selectedSegmentIndex {
             case 0:
+                activityIndicator.isHidden = false
+                activityIndicator.startAnimating()
                 UserController.shared.signIn(email: email, password: password) { error in
-                    activityView.stopAnimating()
+                    self.activityIndicator.stopAnimating()
+                    self.activityIndicator.isHidden = true
                     if let error = error {
                         self.showAlert(message: error.localizedDescription, completion: nil)
                     } else {
@@ -73,7 +92,11 @@ class SignInSignUpViewController: UIViewController {
                 let name = try nameTextField.validatedText(validationType: .requiredField(field: "Name"))
                 let phone = try phoneTextField.validatedText(validationType: .phone)
                 let address = try addressTextView.validatedText(validationType: .requiredField(field: "Address"))
+                activityIndicator.isHidden = false
+                activityIndicator.startAnimating()
                 UserController.shared.signUp(email: email, password: password, name: name, phone: Int(phone)!, address: address) { error in
+                    self.activityIndicator.stopAnimating()
+                    self.activityIndicator.isHidden = true
                     if let error = error {
                         self.showAlert(message: error.localizedDescription, completion: nil)
                     } else {
