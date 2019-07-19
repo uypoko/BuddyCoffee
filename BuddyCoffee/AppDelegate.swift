@@ -32,6 +32,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         orderTabBarItem = (self.window!.rootViewController! as! UITabBarController).viewControllers![1].tabBarItem
         NotificationCenter.default.addObserver(self, selector: #selector(updateOrderBagde), name: DrinkController.orderUpdatedNotification, object: nil)
         updateOrderBagde()
+        // Restore items in cart if exists
+        DrinkController.shared.decodeCart()
         // Set up cache
         let temporaryDirectory = NSTemporaryDirectory()
         let urlCache = URLCache(memoryCapacity: 25_000_000, diskCapacity: 50_000_000, diskPath: temporaryDirectory)
@@ -47,6 +49,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidEnterBackground(_ application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        // Save cart if the app is quit or terminated
+        DrinkController.shared.encodeCart()
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {

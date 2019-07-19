@@ -120,4 +120,20 @@ class DrinkController {
             }
         }
     }
+    
+    func encodeCart() {
+        let documentsDirectoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let cartFileURL = documentsDirectoryURL.appendingPathComponent("cart").appendingPathExtension("json")
+        if let data = try? JSONEncoder().encode(order) {
+            try? data.write(to: cartFileURL)
+        }
+    }
+    
+    func decodeCart() {
+        let documentsDirectoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let cartFileURL = documentsDirectoryURL.appendingPathComponent("cart").appendingPathExtension("json")
+        if let data = try? Data(contentsOf: cartFileURL) {
+            order = (try? JSONDecoder().decode(Order.self, from: data)) ?? Order(drinks: [])
+        }
+    }
 }
