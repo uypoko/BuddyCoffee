@@ -26,6 +26,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         // Do any additional setup after loading the view.
         NotificationCenter.default.addObserver(self, selector: #selector(updateUserUI), name: UserController.authChangedNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateDrinkUI), name: DrinkController.drinkUpdatedNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateProfilePicture), name: UserController.profilePictureChangedNotification, object: nil)
         updateDrinkUI()
     }
     
@@ -35,14 +36,10 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 self.memberInfoView.isHidden = false
                 self.userNameLabel.text = buddyUser.name
                 self.membershipLabel.text = buddyUser.membershipStatus
-                UserController.shared.fetchUserImage { image in
-                    if let image = image {
-                        self.userImageView.image = image
-                    } else {
-                        self.userImageView.isHidden = true
-                    }
-                }
             } else {
+                self.userNameLabel.text = nil
+                self.membershipLabel.text = nil
+                self.userImageView.image = nil
                 self.memberInfoView.isHidden = true
             }
         }
@@ -52,6 +49,14 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         categories = DrinkController.shared.getCategories
         drinks = DrinkController.shared.getDrinks
         drinkTableView.reloadData()
+    }
+    
+    @objc func updateProfilePicture() {
+        UserController.shared.fetchUserImage { image in
+            DispatchQueue.main.async {
+                self.userImageView.image = image
+            }
+        }
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {

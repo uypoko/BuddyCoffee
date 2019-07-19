@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UserManagementViewController: UIViewController {
+class UserManagementViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var memberInfoView: UIView!
@@ -33,6 +33,8 @@ class UserManagementViewController: UIViewController {
         // Do any additional setup after loading the view.
         addressTextView.configure()
         NotificationCenter.default.addObserver(self, selector: #selector(updateUI), name: UserController.authChangedNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateProfilePicture), name: UserController.profilePictureChangedNotification, object: nil)
+        
         registerForKeyboardNotifications()
     }
     
@@ -47,8 +49,22 @@ class UserManagementViewController: UIViewController {
                 self.addressTextView.text = buddyUser.address
                 self.addressTextView.textColor = .black
             } else {
+                self.emailTextField.text = nil
+                self.nameTextField.text = nil
+                self.phoneTextField.text = nil
+                self.addressTextView.text = "Address"
+                self.addressTextView.textColor = .lightGray
+                self.profilePictureImageView.image = nil
                 self.memberInfoView.isHidden = true
                 self.signInSignOutButton.setTitle("Sign In", for: .normal)
+            }
+        }
+    }
+    
+    @objc func updateProfilePicture() {
+        UserController.shared.fetchUserImage { image in
+            DispatchQueue.main.async {
+                self.profilePictureImageView.image = image
             }
         }
     }
@@ -92,6 +108,39 @@ class UserManagementViewController: UIViewController {
     }
     
     @IBAction func changeProfilePictureTapped(_ sender: Any) {
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        
+        let alertController = UIAlertController(title: "Choose Image Source", message: nil, preferredStyle: .actionSheet)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alertController.addAction(cancelAction)
+        
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+            let photoLibraryAction = UIAlertAction(title: "Photo Library", style: .default) { action in
+                imagePicker.sourceType = .photoLibrary
+                self.present(imagePicker, animated: true, completion: nil)
+            }
+            alertController.addAction(photoLibraryAction)
+        }
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let photoURL = info[UIImagePickerController.InfoKey.imageURL] as? URL {
+            activityIndicator.isHidden = false
+            activityIndicator.startAnimating()
+            UserController.shared.uploadProfilePicture(url: photoURL) { error in
+                self.activityIndicator.stopAnimating()
+                self.activityIndicator.isHidden = true
+                if let error = error {
+                    self.showAlert(message: error.localizedDescription, completion: nil)
+                } else {
+                    self.showAlert(message: "Profile Picture updated!", completion: nil)
+                    NotificationCenter.default.post(name: UserController.profilePictureChangedNotification, object: nil)
+                }
+            }
+        }
+        dismiss(animated: true, completion: nil)
     }
     
     @IBAction func submitButtonTapped(_ sender: Any) {
@@ -106,7 +155,8 @@ class UserManagementViewController: UIViewController {
                 self.activityIndicator.isHidden = true
                 if error == nil {
                     self.showAlert(message: "Information updated!") { _ in
-                        UserController.shared.reloadUserInformation()
+                        guard let user = UserController.shared.buddyUser else { return }
+                        UserController.shared.loadUserInformation(userId: user.id)
                     }
                 } else {
                     self.showAlert(message: "Couldn't update information", completion: nil)

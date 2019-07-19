@@ -15,30 +15,37 @@ class UserController {
     var buddyUser: BuddyUser? {
         didSet {
             NotificationCenter.default.post(name: UserController.authChangedNotification, object: nil)
+            NotificationCenter.default.post(name: UserController.profilePictureChangedNotification, object: nil)
         }
     }
     let db = Firestore.firestore()
     let storageRef = Storage.storage().reference()
+    
     static let authChangedNotification = Notification.Name("UserController.authChanged")
+    static let profilePictureChangedNotification = Notification.Name("UserController.profilePictureChanged")
+    
     var handle: AuthStateDidChangeListenerHandle?
     
     func addAuthStateListener() {
         // Listen for authentication state
         handle = Auth.auth().addStateDidChangeListener { (auth, user) in
             if let user = user {
-                self.db.collection("users").document(user.uid).getDocument { (document, error) in
-                    if let document = document, document.exists {
-                        guard let emailData = document.data()?["email"], let email = emailData as? String else { return }
-                        guard let nameData = document.data()?["name"], let name = nameData as? String else { return }
-                        guard let phoneData = document.data()?["phone"], let phone = phoneData as? Int else { return }
-                        guard let addressData = document.data()?["address"], let address = addressData as? String else { return }
-                        var points = 0 // The server takes a while to create this field in the database after a registration
-                        if let pointData = document.data()?["points"] { points = pointData as! Int }
-                        self.buddyUser = BuddyUser(id: user.uid, email: email, name: name, phone: phone, address: address, points: points)
-                    }
-                }
+                self.loadUserInformation(userId: user.uid)
             } else {
                 self.buddyUser = nil
+            }
+        }
+    }
+    
+    func loadUserInformation(userId: String) {
+        db.collection("users").document(userId).getDocument { (document, error) in
+            if let document = document, document.exists {
+                guard let emailData = document.data()?["email"], let email = emailData as? String else { return }
+                guard let nameData = document.data()?["name"], let name = nameData as? String else { return }
+                guard let phoneData = document.data()?["phone"], let phone = phoneData as? Int else { return }
+                guard let addressData = document.data()?["address"], let address = addressData as? String else { return }
+                guard let pointsData = document.data()?["points"], let points = pointsData as? Int else { return }
+                self.buddyUser = BuddyUser(id: userId, email: email, name: name, phone: phone, address: address, points: points)
             }
         }
     }
@@ -50,7 +57,7 @@ class UserController {
     func fetchUserImage(completion: @escaping (UIImage?) -> Void) {
         guard let buddyUser = buddyUser else { return }
         let imgRef = storageRef.child("users/\(buddyUser.id)/avatar.jpg")
-        imgRef.getData(maxSize: 1 * 1024 * 1024) { data, error in
+        imgRef.getData(maxSize: 10 * 1024 * 1024) { data, error in
             if let data = data {
                 let image = UIImage(data: data)
                 completion(image)
@@ -61,11 +68,22 @@ class UserController {
     }
     
     func signOut() {
+        buddyUser = nil
         try? Auth.auth().signOut()
     }
     
-    func uploadProfilePicture() {
+    func uploadProfilePicture(url: URL, completion: @escaping (Error?) -> Void) {
+        guard let buddyUser = buddyUser else { return }
+        let avatarRef = storageRef.child("users/\(buddyUser.id)/avatar.jpg")
         
+        let uploadTask = avatarRef.putFile(from: url, metadata: nil) { metadata, error in
+            if let error = error {
+                completion(error)
+            } else {
+                completion(nil)
+            }
+        }
+        uploadTask.resume()
     }
     
     func signIn(email: String, password: String, completion: @escaping (Error?) -> Void) {
@@ -111,20 +129,6 @@ class UserController {
                 completion(error)
             } else {
                 completion(nil)
-            }
-        }
-    }
-    
-    func reloadUserInformation() {
-        guard let user = buddyUser else { return }
-        db.collection("users").document(user.id).getDocument { (document, error) in
-            if let document = document, document.exists {
-                guard let emailData = document.data()?["email"], let email = emailData as? String else { return }
-                guard let nameData = document.data()?["name"], let name = nameData as? String else { return }
-                guard let phoneData = document.data()?["phone"], let phone = phoneData as? Int else { return }
-                guard let addressData = document.data()?["address"], let address = addressData as? String else { return }
-                guard let pointsData = document.data()?["points"], let points = pointsData as? Int else { return }
-                self.buddyUser = BuddyUser(id: user.id, email: email, name: name, phone: phone, address: address, points: points)
             }
         }
     }
