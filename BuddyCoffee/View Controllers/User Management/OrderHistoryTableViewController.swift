@@ -22,10 +22,19 @@ class OrderHistoryTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         self.navigationItem.title = "Order History"
-        UserController.shared.fetchOrderHistory() { orderHistory in
-            if let orderHistory = orderHistory {
-                self.orderHistory = orderHistory
-                self.tableView.reloadData()
+        if UserController.shared.buddyUser != nil {
+            UserController.shared.fetchOrderHistory() { orderHistory in
+                if let orderHistory = orderHistory {
+                    self.orderHistory = orderHistory
+                    self.tableView.reloadData()
+                }
+            }
+        } else {
+            DrinkController.shared.fetchOrderHistory() { orderHistory in
+                if let orderHistory = orderHistory {
+                    self.orderHistory = orderHistory
+                    self.tableView.reloadData()
+                }
             }
         }
     }

@@ -29,6 +29,7 @@ class DrinkController {
             NotificationCenter.default.post(name: DrinkController.orderUpdatedNotification, object: nil)
         }
     }
+    var orderHistoryIds: [String] = []
     
     let db = Firestore.firestore()
     let storageRef = Storage.storage().reference()
@@ -111,10 +112,12 @@ class DrinkController {
                 }
             }
         } else {
-            db.collection("orders").document(dateString).setData(data) { err in
+            var ref: DocumentReference? = nil
+            ref = db.collection("orders").addDocument(data: data) { err in
                 if let err = err {
                     completion(err)
                 } else {
+                    self.orderHistoryIds.append(ref!.documentID)
                     completion(nil)
                 }
             }
@@ -136,4 +139,54 @@ class DrinkController {
             order = (try? JSONDecoder().decode(Order.self, from: data)) ?? Order(drinks: [])
         }
     }
+    
+    func encodeOrderHistoryIds() {
+        let documentsDirectoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let orderHistoryIdsURL = documentsDirectoryURL.appendingPathComponent("orderHistoryIds").appendingPathExtension("json")
+        if let data = try? JSONEncoder().encode(orderHistoryIds) {
+            try? data.write(to: orderHistoryIdsURL)
+        }
+    }
+    
+    func decodeOrderHistoryIds() {
+        let documentsDirectoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let orderHistoryIdsURL = documentsDirectoryURL.appendingPathComponent("orderHistoryIds").appendingPathExtension("json")
+        if let data = try? Data(contentsOf: orderHistoryIdsURL) {
+            orderHistoryIds = (try? JSONDecoder().decode(Array<String>.self, from: data)) ?? [String]()
+        }
+    }
+    
+    func fetchOrderHistory(completion: @escaping (OrderHistory?) -> Void) {
+        guard !orderHistoryIds.isEmpty else { return }
+        var orderHistory = OrderHistory(orders: [])
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMM dd, yyyy 'at' h:mm:ss a"
+        for orderId in orderHistoryIds {
+            db.collection("orders").document(orderId).getDocument { snapshot, error in
+                if let snapshot = snapshot {
+                    let data: [String: Any] = snapshot.data()!
+                    guard let dateData = data["date"], let dateString = dateData as? String else { return }
+                    guard let date = dateFormatter.date(from: dateString) else { return }
+                    guard let drinksData = data["drinks"] as? [[String: Any]] else { return }
+                    var drinks: [DrinkInOrder] = []
+                    var id = 0
+                    for drink in drinksData {
+                        let name = drink["name"] as! String
+                        let price = drink["price"] as! Int
+                        let description = drink["description"] as! String
+                        let quantity = drink["quantity"] as! Int
+                        let drink = Drink(id: "\(id += 1)", name: name, category: "", price: price, description: description)
+                        let drinkInOrder = DrinkInOrder(drink: drink, quantity: quantity)
+                        drinks.append(drinkInOrder)
+                    }
+                    let order = Order(drinks: drinks, date: date)
+                    orderHistory.orders.append(order)
+                    completion(orderHistory)
+                } else {
+                    completion(nil)
+                }
+            }
+        }
+    }
+
 }

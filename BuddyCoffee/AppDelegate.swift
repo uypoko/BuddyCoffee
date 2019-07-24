@@ -34,6 +34,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         updateOrderBagde()
         // Restore items in cart if exists
         DrinkController.shared.decodeCart()
+        // Restore order history ids
+        DrinkController.shared.decodeOrderHistoryIds()
         // Set up cache
         let temporaryDirectory = NSTemporaryDirectory()
         let urlCache = URLCache(memoryCapacity: 25_000_000, diskCapacity: 50_000_000, diskPath: temporaryDirectory)
@@ -51,6 +53,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
         // Save cart if the app is quit or terminated
         DrinkController.shared.encodeCart()
+        // Save corder history ids
+        DrinkController.shared.encodeOrderHistoryIds()
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
