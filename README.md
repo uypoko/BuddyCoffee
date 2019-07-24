@@ -11,7 +11,7 @@ BuddyCoffee is a food delivery application where users can order drinks from a c
 * Update users password
 * View order history for signed in users
 ## Roadmap
-* View order history for guest users
+
 ## Prerequisites
 * Install Xcode 10.1 or later.
 * Install CocoaPods 1.4.0 or later.
