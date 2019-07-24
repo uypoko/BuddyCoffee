@@ -78,9 +78,11 @@ class SignInSignUpViewController: UIViewController {
             case 0:
                 activityIndicator.isHidden = false
                 activityIndicator.startAnimating()
+                view.isUserInteractionEnabled = false
                 UserController.shared.signIn(email: email, password: password) { error in
                     self.activityIndicator.stopAnimating()
                     self.activityIndicator.isHidden = true
+                    self.view.isUserInteractionEnabled = true
                     if let error = error {
                         self.showAlert(message: error.localizedDescription, completion: nil)
                     } else {
@@ -94,9 +96,11 @@ class SignInSignUpViewController: UIViewController {
                 let address = try addressTextView.validatedText(validationType: .requiredField(field: "Address"))
                 activityIndicator.isHidden = false
                 activityIndicator.startAnimating()
+                view.isUserInteractionEnabled = false
                 UserController.shared.signUp(email: email, password: password, name: name, phone: Int(phone)!, address: address) { error in
                     self.activityIndicator.stopAnimating()
                     self.activityIndicator.isHidden = true
+                    self.view.isUserInteractionEnabled = true
                     if let error = error {
                         self.showAlert(message: error.localizedDescription, completion: nil)
                     } else {

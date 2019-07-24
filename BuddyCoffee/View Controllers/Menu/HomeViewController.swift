@@ -12,7 +12,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     var categories: [String] = []
     var drinks: [[Drink]] = []
-    @IBOutlet weak var memberInfoView: UIView!
+    @IBOutlet weak var userInforStackView: UIStackView!
     @IBOutlet weak var userImageView: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var membershipLabel: UILabel!
@@ -20,7 +20,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        memberInfoView.isHidden = true
+        userImageView.isHidden = true
+        userInforStackView.isHidden = true
         drinkTableView.dataSource = self
         drinkTableView.delegate = self
         // Do any additional setup after loading the view.
@@ -33,14 +34,14 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @objc func updateUserUI() {
         DispatchQueue.main.async {
             if let buddyUser = UserController.shared.buddyUser {
-                self.memberInfoView.isHidden = false
+                self.userInforStackView.isHidden = false
                 self.userNameLabel.text = buddyUser.name
                 self.membershipLabel.text = buddyUser.membershipStatus
             } else {
                 self.userNameLabel.text = nil
                 self.membershipLabel.text = nil
                 self.userImageView.image = nil
-                self.memberInfoView.isHidden = true
+                self.userInforStackView.isHidden = true
             }
         }
     }
@@ -54,7 +55,12 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @objc func updateProfilePicture() {
         UserController.shared.fetchUserImage { image in
             DispatchQueue.main.async {
-                self.userImageView.image = image
+                if let image = image {
+                    self.userImageView.isHidden = false
+                    self.userImageView.image = image
+                } else {
+                    self.userImageView.isHidden = true
+                }
             }
         }
     }

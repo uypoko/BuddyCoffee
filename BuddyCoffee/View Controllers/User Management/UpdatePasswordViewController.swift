@@ -33,9 +33,11 @@ class UpdatePasswordViewController: UIViewController {
             }
             activityIndicator.isHidden = false
             activityIndicator.startAnimating()
+            view.isUserInteractionEnabled = false
             UserController.shared.updatePassword(currentPassword: currentPassword, newPassword: newPassword) { error in
                 self.activityIndicator.stopAnimating()
                 self.activityIndicator.isHidden = true
+                self.view.isUserInteractionEnabled = true
                 if let error = error {
                     self.showAlert(message: error.localizedDescription, completion: nil)
                 } else {

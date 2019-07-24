@@ -28,6 +28,7 @@ class UserManagementViewController: UIViewController, UIImagePickerControllerDel
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        profilePictureImageView.isHidden = true
         memberInfoView.isHidden = true
         activityIndicator.isHidden = true
         // Do any additional setup after loading the view.
@@ -55,6 +56,7 @@ class UserManagementViewController: UIViewController, UIImagePickerControllerDel
                 self.addressTextView.text = "Address"
                 self.addressTextView.textColor = .lightGray
                 self.profilePictureImageView.image = nil
+                self.profilePictureImageView.isHidden = true
                 self.memberInfoView.isHidden = true
                 self.signInSignOutButton.setTitle("Sign In", for: .normal)
             }
@@ -64,7 +66,12 @@ class UserManagementViewController: UIViewController, UIImagePickerControllerDel
     @objc func updateProfilePicture() {
         UserController.shared.fetchUserImage { image in
             DispatchQueue.main.async {
-                self.profilePictureImageView.image = image
+                if let image = image {
+                    self.profilePictureImageView.isHidden = false
+                    self.profilePictureImageView.image = image
+                } else {
+                    self.profilePictureImageView.isHidden = true
+                }
             }
         }
     }
@@ -129,9 +136,11 @@ class UserManagementViewController: UIViewController, UIImagePickerControllerDel
         if let photoURL = info[UIImagePickerController.InfoKey.imageURL] as? URL {
             activityIndicator.isHidden = false
             activityIndicator.startAnimating()
+            view.isUserInteractionEnabled = false
             UserController.shared.uploadProfilePicture(url: photoURL) { error in
                 self.activityIndicator.stopAnimating()
                 self.activityIndicator.isHidden = true
+                self.view.isUserInteractionEnabled = true
                 if let error = error {
                     self.showAlert(message: error.localizedDescription, completion: nil)
                 } else {
@@ -150,9 +159,11 @@ class UserManagementViewController: UIViewController, UIImagePickerControllerDel
             let address = try addressTextView.validatedText(validationType: .requiredField(field: "Address"))
             activityIndicator.isHidden = false
             activityIndicator.startAnimating()
+            view.isUserInteractionEnabled = false
             UserController.shared.updateInformation(name: name, phone: Int(phone)!, address: address) { error in
                 self.activityIndicator.stopAnimating()
                 self.activityIndicator.isHidden = true
+                self.view.isUserInteractionEnabled = true
                 if error == nil {
                     self.showAlert(message: "Information updated!") { _ in
                         guard let user = UserController.shared.buddyUser else { return }

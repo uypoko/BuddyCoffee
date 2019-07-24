@@ -71,9 +71,11 @@ class DeliveryAddressViewController: UIViewController {
     func uploadOrder(email: String, name: String, phone: Int, address: String, total: Int) {
         activityIndicator.isHidden = false
         activityIndicator.startAnimating()
+        view.isUserInteractionEnabled = false
         DrinkController.shared.submitOrder(email: email, name: name, phone: phone, address: address, total: total) { error in
             self.activityIndicator.stopAnimating()
             self.activityIndicator.isHidden = true
+            self.view.isUserInteractionEnabled = true
             if let error = error {
                 self.showAlert(message: error.localizedDescription, completion: nil)
             } else {

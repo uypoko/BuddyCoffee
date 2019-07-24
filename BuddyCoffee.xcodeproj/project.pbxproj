@@ -108,6 +108,37 @@
 			path = "Helper Classes";
 			sourceTree = "<group>";
 		};
+		94BB864022E83BC200A28C14 /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				A4C61F6622CC872A005ED098 /* HomeViewController.swift */,
+				944F537F22CCD9B9001AD654 /* DrinkDetailViewController.swift */,
+			);
+			path = Menu;
+			sourceTree = "<group>";
+		};
+		94BB864122E83BED00A28C14 /* Ordering */ = {
+			isa = PBXGroup;
+			children = (
+				A4C61F6822CC8758005ED098 /* CartTableViewController.swift */,
+				9446504F22CE22180008E3B2 /* OrderConfirmationViewController.swift */,
+				A4C3B28422DF070F00D96D2C /* DeliveryAddressViewController.swift */,
+			);
+			path = Ordering;
+			sourceTree = "<group>";
+		};
+		94BB864222E83C3400A28C14 /* User Management */ = {
+			isa = PBXGroup;
+			children = (
+				A4C61F6A22CC87B4005ED098 /* UserManagementViewController.swift */,
+				94A922FA22D71BDE0048CE42 /* SignInSignUpViewController.swift */,
+				9457824122DDC26A00FBCA92 /* UpdatePasswordViewController.swift */,
+				9457824322DDCEAF00FBCA92 /* OrderHistoryTableViewController.swift */,
+				9457824522DDF04100FBCA92 /* OrderHistoryDetailTableViewController.swift */,
+			);
+			path = "User Management";
+			sourceTree = "<group>";
+		};
 		94D0D86522DC7BB500DD3CB7 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -168,16 +199,9 @@
 		A4C61F6522CC870C005ED098 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				A4C61F6622CC872A005ED098 /* HomeViewController.swift */,
-				A4C61F6822CC8758005ED098 /* CartTableViewController.swift */,
-				A4C61F6A22CC87B4005ED098 /* UserManagementViewController.swift */,
-				944F537F22CCD9B9001AD654 /* DrinkDetailViewController.swift */,
-				9446504F22CE22180008E3B2 /* OrderConfirmationViewController.swift */,
-				94A922FA22D71BDE0048CE42 /* SignInSignUpViewController.swift */,
-				9457824122DDC26A00FBCA92 /* UpdatePasswordViewController.swift */,
-				9457824322DDCEAF00FBCA92 /* OrderHistoryTableViewController.swift */,
-				9457824522DDF04100FBCA92 /* OrderHistoryDetailTableViewController.swift */,
-				A4C3B28422DF070F00D96D2C /* DeliveryAddressViewController.swift */,
+				94BB864222E83C3400A28C14 /* User Management */,
+				94BB864122E83BED00A28C14 /* Ordering */,
+				94BB864022E83BC200A28C14 /* Menu */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
