@@ -42,7 +42,7 @@ class UserController {
             if let document = document, document.exists {
                 guard let emailData = document.data()?["email"], let email = emailData as? String else { return }
                 guard let nameData = document.data()?["name"], let name = nameData as? String else { return }
-                guard let phoneData = document.data()?["phone"], let phone = phoneData as? Int else { return }
+                guard let phoneData = document.data()?["phone"], let phone = phoneData as? String else { return }
                 guard let addressData = document.data()?["address"], let address = addressData as? String else { return }
                 guard let pointsData = document.data()?["points"], let points = pointsData as? Int else { return }
                 self.buddyUser = BuddyUser(id: userId, email: email, name: name, phone: phone, address: address, points: points)
@@ -96,7 +96,7 @@ class UserController {
         }
     }
     
-    func signUp(email: String, password: String, name: String, phone: Int, address: String, completion: @escaping (Error?) -> Void) {
+    func signUp(email: String, password: String, name: String, phone: String, address: String, completion: @escaping (Error?) -> Void) {
         Auth.auth().createUser(withEmail: email, password: password) { authData, error in
             if let user = authData?.user, error == nil {
                 let data: [String: Any] = [
@@ -118,7 +118,7 @@ class UserController {
         }
     }
     
-    func updateInformation(name: String, phone: Int, address: String, completion: @escaping (Error?) -> Void) {
+    func updateInformation(name: String, phone: String, address: String, completion: @escaping (Error?) -> Void) {
         guard let user = buddyUser else { return }
         db.collection("users").document(user.id).setData([
             "name": name,

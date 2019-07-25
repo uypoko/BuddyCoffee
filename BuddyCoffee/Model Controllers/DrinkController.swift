@@ -78,7 +78,7 @@ class DrinkController {
         }
     }
     
-    func submitOrder(email: String, name: String, phone: Int, address: String, total: Int, completion: @escaping (Error?) -> Void) {
+    func submitOrder(email: String, name: String, phone: String, address: String, total: Int, completion: @escaping (Error?) -> Void) {
         order.setDate()
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .medium

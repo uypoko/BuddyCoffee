@@ -97,7 +97,7 @@ class SignInSignUpViewController: UIViewController {
                 activityIndicator.isHidden = false
                 activityIndicator.startAnimating()
                 view.isUserInteractionEnabled = false
-                UserController.shared.signUp(email: email, password: password, name: name, phone: Int(phone)!, address: address) { error in
+                UserController.shared.signUp(email: email, password: password, name: name, phone: phone, address: address) { error in
                     self.activityIndicator.stopAnimating()
                     self.activityIndicator.isHidden = true
                     self.view.isUserInteractionEnabled = true

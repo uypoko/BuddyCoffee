@@ -12,7 +12,7 @@ class BuddyUser {
     let id: String
     var email: String
     var name: String
-    var phone: Int
+    var phone: String
     var address: String
     var points: Int
     var membershipStatus: String {
@@ -30,7 +30,7 @@ class BuddyUser {
         return status
     }
     
-    init(id: String, email: String, name: String, phone: Int, address: String, points: Int) {
+    init(id: String, email: String, name: String, phone: String, address: String, points: Int) {
         self.id = id
         self.email = email
         self.name = name

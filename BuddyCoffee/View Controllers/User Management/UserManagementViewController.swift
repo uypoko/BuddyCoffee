@@ -46,7 +46,7 @@ class UserManagementViewController: UIViewController, UIImagePickerControllerDel
                 self.signInSignOutButton.setTitle("Sign Out", for: .normal)
                 self.emailTextField.text = buddyUser.email
                 self.nameTextField.text = buddyUser.name
-                self.phoneTextField.text = "\(buddyUser.phone)"
+                self.phoneTextField.text = buddyUser.phone
                 self.addressTextView.text = buddyUser.address
                 self.addressTextView.textColor = .black
             } else {
@@ -160,7 +160,7 @@ class UserManagementViewController: UIViewController, UIImagePickerControllerDel
             activityIndicator.isHidden = false
             activityIndicator.startAnimating()
             view.isUserInteractionEnabled = false
-            UserController.shared.updateInformation(name: name, phone: Int(phone)!, address: address) { error in
+            UserController.shared.updateInformation(name: name, phone: phone, address: address) { error in
                 self.activityIndicator.stopAnimating()
                 self.activityIndicator.isHidden = true
                 self.view.isUserInteractionEnabled = true

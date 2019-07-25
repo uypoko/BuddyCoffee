@@ -59,7 +59,7 @@ class DeliveryAddressViewController: UIViewController {
 
             let alert = UIAlertController(title: "Confirm Order", message: "You're about to submit the order with the total of \(total)", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Submit", style: .default) { action in
-                self.uploadOrder(email: email, name: name, phone: Int(phone)!, address: address, total: total)
+                self.uploadOrder(email: email, name: name, phone: phone, address: address, total: total)
             })
             alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
             present(alert, animated: true, completion: nil)
@@ -68,7 +68,7 @@ class DeliveryAddressViewController: UIViewController {
         }
     }
     
-    func uploadOrder(email: String, name: String, phone: Int, address: String, total: Int) {
+    func uploadOrder(email: String, name: String, phone: String, address: String, total: Int) {
         activityIndicator.isHidden = false
         activityIndicator.startAnimating()
         view.isUserInteractionEnabled = false
