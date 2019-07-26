@@ -9,7 +9,7 @@ BuddyCoffee is a food delivery application where users can order drinks from a c
 * Upload users profile picture
 * Update users information
 * Update users password
-* View order history for signed in users
+* View order history
 ## Roadmap
 
 ## Prerequisites

@@ -55,8 +55,6 @@ class UserManagementViewController: UIViewController, UIImagePickerControllerDel
                 self.phoneTextField.text = nil
                 self.addressTextView.text = "Address"
                 self.addressTextView.textColor = .lightGray
-                self.profilePictureImageView.image = nil
-                self.profilePictureImageView.isHidden = true
                 self.memberInfoView.isHidden = true
                 self.signInSignOutButton.setTitle("Sign In", for: .normal)
             }
@@ -64,13 +62,18 @@ class UserManagementViewController: UIViewController, UIImagePickerControllerDel
     }
     
     @objc func updateProfilePicture() {
-        UserController.shared.fetchUserImage { image in
-            DispatchQueue.main.async {
-                if let image = image {
-                    self.profilePictureImageView.isHidden = false
+        DispatchQueue.main.async {
+            if UserController.shared.buddyUser == nil {
+                self.profilePictureImageView.image = nil
+                self.profilePictureImageView.isHidden = true
+            } else {
+                UserController.shared.fetchUserImage { image in
                     self.profilePictureImageView.image = image
-                } else {
-                    self.profilePictureImageView.isHidden = true
+                    if image != nil {
+                        self.profilePictureImageView.isHidden = false
+                    } else {
+                        self.profilePictureImageView.isHidden = true
+                    }
                 }
             }
         }
@@ -133,11 +136,17 @@ class UserManagementViewController: UIViewController, UIImagePickerControllerDel
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let photoURL = info[UIImagePickerController.InfoKey.imageURL] as? URL {
+        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            var compressionQuality: CGFloat = 1.0
+            let greaterSize = CGFloat.maximum(image.size.width, image.size.height)
+            if greaterSize > 1024 {
+                compressionQuality = 1 / (greaterSize / 1024)
+            }
+            guard let data = image.jpegData(compressionQuality: compressionQuality) else { return }
             activityIndicator.isHidden = false
             activityIndicator.startAnimating()
             view.isUserInteractionEnabled = false
-            UserController.shared.uploadProfilePicture(url: photoURL) { error in
+            UserController.shared.uploadProfilePicture(data: data) { error in
                 self.activityIndicator.stopAnimating()
                 self.activityIndicator.isHidden = true
                 self.view.isUserInteractionEnabled = true

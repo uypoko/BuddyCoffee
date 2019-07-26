@@ -72,11 +72,11 @@ class UserController {
         try? Auth.auth().signOut()
     }
     
-    func uploadProfilePicture(url: URL, completion: @escaping (Error?) -> Void) {
+    func uploadProfilePicture(data: Data, completion: @escaping (Error?) -> Void) {
         guard let buddyUser = buddyUser else { return }
         let avatarRef = storageRef.child("users/\(buddyUser.id)/avatar.jpg")
         
-        let uploadTask = avatarRef.putFile(from: url, metadata: nil) { metadata, error in
+        let uploadTask = avatarRef.putData(data, metadata: nil) { metadata, error in
             if let error = error {
                 completion(error)
             } else {

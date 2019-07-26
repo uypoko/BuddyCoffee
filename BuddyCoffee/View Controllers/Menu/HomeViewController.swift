@@ -20,6 +20,10 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Make userImageView appear circular
+        userImageView.layer.cornerRadius = userImageView.frame.width / 2.0
+        userImageView.clipsToBounds = true
+        
         userImageView.isHidden = true
         userInforStackView.isHidden = true
         drinkTableView.dataSource = self
@@ -55,9 +59,9 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @objc func updateProfilePicture() {
         UserController.shared.fetchUserImage { image in
             DispatchQueue.main.async {
-                if let image = image {
+                self.userImageView.image = image
+                if image != nil {
                     self.userImageView.isHidden = false
-                    self.userImageView.image = image
                 } else {
                     self.userImageView.isHidden = true
                 }
