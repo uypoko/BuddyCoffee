@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import CoreLocation
 import GoogleMaps
 
 class DeliveryAddressViewController: UIViewController {
@@ -144,9 +143,12 @@ class DeliveryAddressViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
-        if segue.identifier == "PlaceOrderSegue" {
-            let orderConfirmationViewController = segue.destination as! OrderConfirmationViewController
+        if segue.identifier == "PlaceOrderSegue",
+            let orderConfirmationViewController = segue.destination as? OrderConfirmationViewController {
             orderConfirmationViewController.message = "We've got your order.\nPlease keep an eye on your phone 😄"
+        } else if segue.identifier == "FindMyLocationOnMapsSegue",
+            let findMyLocationOnMapsVC = segue.destination as? FindMyLocationOnMapsViewController {
+                findMyLocationOnMapsVC.deliveryAddressDidSetDelegate =  self
         }
     }
 
@@ -170,5 +172,13 @@ extension DeliveryAddressViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print(error.localizedDescription)
+    }
+}
+
+extension DeliveryAddressViewController: DeliveryAddressDidSetDelegate {
+    func didSetLocation(address: String) {
+        DispatchQueue.main.async {
+            self.addressTextView.text = address
+        }
     }
 }

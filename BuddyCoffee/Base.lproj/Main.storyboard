@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Rg3-EW-A4x">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Rg3-EW-A4x">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -335,8 +335,15 @@
                                     </textView>
                                 </subviews>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yes-Ac-kPp">
+                                <rect key="frame" x="16" y="358" width="382" height="30"/>
+                                <state key="normal" title="Find My Location On Maps"/>
+                                <connections>
+                                    <segue destination="Zgs-P7-4Cb" kind="presentation" identifier="FindMyLocationOnMapsSegue" id="7pM-ze-CKQ"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M6A-HT-HRe">
-                                <rect key="frame" x="16" y="366" width="382" height="30"/>
+                                <rect key="frame" x="16" y="396" width="382" height="30"/>
                                 <color key="backgroundColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="y5a-3d-ibW"/>
@@ -356,15 +363,18 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="yes-Ac-kPp" firstAttribute="leading" secondItem="c06-Kc-bE6" secondAttribute="leading" constant="16" id="EJq-gt-aIh"/>
                             <constraint firstItem="M6A-HT-HRe" firstAttribute="leading" secondItem="c06-Kc-bE6" secondAttribute="leading" constant="16" id="ODh-ij-EhB">
                                 <variation key="widthClass=regular" constant="64"/>
                             </constraint>
+                            <constraint firstItem="yes-Ac-kPp" firstAttribute="top" secondItem="25K-Gq-jnD" secondAttribute="bottom" constant="8" id="SnM-5R-5BN"/>
                             <constraint firstItem="Tds-fu-0qG" firstAttribute="centerX" secondItem="WuB-88-row" secondAttribute="centerX" id="TIp-CR-RcO"/>
                             <constraint firstItem="c06-Kc-bE6" firstAttribute="trailing" secondItem="M6A-HT-HRe" secondAttribute="trailing" constant="16" id="YdY-ae-K2G">
                                 <variation key="widthClass=regular" constant="64"/>
                             </constraint>
                             <constraint firstItem="25K-Gq-jnD" firstAttribute="top" secondItem="c06-Kc-bE6" secondAttribute="top" constant="8" id="Z5b-QO-XN1"/>
-                            <constraint firstItem="M6A-HT-HRe" firstAttribute="top" secondItem="25K-Gq-jnD" secondAttribute="bottom" constant="16" id="cDD-MP-NWY"/>
+                            <constraint firstItem="c06-Kc-bE6" firstAttribute="trailing" secondItem="yes-Ac-kPp" secondAttribute="trailing" constant="16" id="ZfM-6c-lua"/>
+                            <constraint firstItem="M6A-HT-HRe" firstAttribute="top" secondItem="yes-Ac-kPp" secondAttribute="bottom" constant="8" id="fbD-pv-WWI"/>
                             <constraint firstItem="25K-Gq-jnD" firstAttribute="leading" secondItem="c06-Kc-bE6" secondAttribute="leading" constant="16" id="lhH-EE-XOb">
                                 <variation key="widthClass=regular" constant="64"/>
                             </constraint>
@@ -387,6 +397,74 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hYN-hc-PbR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2996" y="13"/>
+        </scene>
+        <!--Find My Location On Maps View Controller-->
+        <scene sceneID="lpa-qp-QAA">
+            <objects>
+                <viewController id="Zgs-P7-4Cb" customClass="FindMyLocationOnMapsViewController" customModule="BuddyCoffee" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8F0-JC-k4e">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0n4-6j-wdT" customClass="GMSMapView">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="742.5"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pin3" translatesAutoresizingMaskIntoConstraints="NO" id="wEv-kJ-AMz">
+                                <rect key="frame" x="182" y="321.5" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="TgR-m9-Frt"/>
+                                    <constraint firstAttribute="width" constant="50" id="hqD-Dj-izf"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Your Address" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ya0-DW-v2K">
+                                <rect key="frame" x="20.5" y="750.5" width="373" height="19.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YpX-uz-f1z">
+                                <rect key="frame" x="20.5" y="778" width="373" height="30"/>
+                                <color key="backgroundColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Wqa-g7-w18"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Set Location">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="placeOrderButtonTapped:" destination="nQW-AM-NOf" eventType="touchUpInside" id="dQb-1o-64s"/>
+                                    <action selector="setLocationButtonTapped:" destination="Zgs-P7-4Cb" eventType="touchUpInside" id="XvV-8d-iZu"/>
+                                    <action selector="signInSignOutButtonTapped:" destination="mnK-Mo-jaj" eventType="touchUpInside" id="DQM-Q9-c0N"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="YpX-uz-f1z" firstAttribute="width" secondItem="8F0-JC-k4e" secondAttribute="width" multiplier="0.9" id="6pH-dE-jRE"/>
+                            <constraint firstItem="Ya0-DW-v2K" firstAttribute="centerX" secondItem="8F0-JC-k4e" secondAttribute="centerX" id="NmN-Ra-1CU"/>
+                            <constraint firstItem="0n4-6j-wdT" firstAttribute="leading" secondItem="kLZ-pB-Tay" secondAttribute="leading" id="PUS-Cw-y1V"/>
+                            <constraint firstItem="0n4-6j-wdT" firstAttribute="top" secondItem="kLZ-pB-Tay" secondAttribute="top" id="SFP-3A-uEZ"/>
+                            <constraint firstItem="kLZ-pB-Tay" firstAttribute="trailing" secondItem="0n4-6j-wdT" secondAttribute="trailing" id="axo-xB-Ph1"/>
+                            <constraint firstItem="wEv-kJ-AMz" firstAttribute="centerY" secondItem="0n4-6j-wdT" secondAttribute="centerY" constant="-25" id="cDa-mn-a84"/>
+                            <constraint firstItem="wEv-kJ-AMz" firstAttribute="centerX" secondItem="8F0-JC-k4e" secondAttribute="centerX" id="fsO-j1-s7x"/>
+                            <constraint firstItem="kLZ-pB-Tay" firstAttribute="bottom" secondItem="YpX-uz-f1z" secondAttribute="bottom" id="noM-ia-DMr"/>
+                            <constraint firstItem="YpX-uz-f1z" firstAttribute="centerX" secondItem="8F0-JC-k4e" secondAttribute="centerX" id="tzF-mX-zzH"/>
+                            <constraint firstItem="Ya0-DW-v2K" firstAttribute="width" secondItem="YpX-uz-f1z" secondAttribute="width" id="vbX-0g-qOX"/>
+                            <constraint firstItem="YpX-uz-f1z" firstAttribute="top" secondItem="Ya0-DW-v2K" secondAttribute="bottom" constant="8" id="yTg-55-syb"/>
+                            <constraint firstItem="Ya0-DW-v2K" firstAttribute="top" secondItem="0n4-6j-wdT" secondAttribute="bottom" constant="8" id="zKq-hX-1Ig"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="kLZ-pB-Tay"/>
+                    </view>
+                    <connections>
+                        <outlet property="addressLabel" destination="Ya0-DW-v2K" id="Bca-We-uze"/>
+                        <outlet property="mapView" destination="0n4-6j-wdT" id="uGA-CI-THI"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Cpg-2t-C6Q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3835" y="-329"/>
         </scene>
         <!--Order Confirmation View Controller-->
         <scene sceneID="5bo-FQ-wxz">
@@ -427,7 +505,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oVZ-hk-hDJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="km4-6z-xR0" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3816" y="13"/>
+            <point key="canvasLocation" x="4580" y="13"/>
         </scene>
         <!--User Management View Controller-->
         <scene sceneID="h3Y-Zs-Zet">
@@ -983,6 +1061,7 @@
         <image name="baseline_account_box_black_36pt" width="36" height="36"/>
         <image name="baseline_home_black_36pt" width="36" height="36"/>
         <image name="baseline_shopping_cart_black_36pt" width="36" height="36"/>
+        <image name="pin3" width="2400" height="2400"/>
         <image name="placeholder" width="100" height="100"/>
     </resources>
 </document>

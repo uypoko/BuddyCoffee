@@ -21,6 +21,7 @@
 		94D0D86722DC7BF000DD3CB7 /* UITextField+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94D0D86622DC7BF000DD3CB7 /* UITextField+Extensions.swift */; };
 		94D0D86922DC7F7C00DD3CB7 /* UITextView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94D0D86822DC7F7C00DD3CB7 /* UITextView+Extensions.swift */; };
 		94D2AE1722D335EF00BA40F9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 94D2AE1622D335EE00BA40F9 /* GoogleService-Info.plist */; };
+		A436D76024866C2300251A5E /* FindMyLocationOnMapsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A436D75F24866C2300251A5E /* FindMyLocationOnMapsViewController.swift */; };
 		A487B07322CC7ADA004EA220 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A487B07222CC7ADA004EA220 /* AppDelegate.swift */; };
 		A487B07822CC7ADA004EA220 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A487B07622CC7ADA004EA220 /* Main.storyboard */; };
 		A487B07A22CC7ADB004EA220 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A487B07922CC7ADB004EA220 /* Assets.xcassets */; };
@@ -53,6 +54,7 @@
 		94D0D86822DC7F7C00DD3CB7 /* UITextView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+Extensions.swift"; sourceTree = "<group>"; };
 		94D2AE1622D335EE00BA40F9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		96E4B8FF9ABA8E6F5407EB8B /* Pods-BuddyCoffee.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BuddyCoffee.debug.xcconfig"; path = "Target Support Files/Pods-BuddyCoffee/Pods-BuddyCoffee.debug.xcconfig"; sourceTree = "<group>"; };
+		A436D75F24866C2300251A5E /* FindMyLocationOnMapsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindMyLocationOnMapsViewController.swift; sourceTree = "<group>"; };
 		A487B06F22CC7ADA004EA220 /* BuddyCoffee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BuddyCoffee.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A487B07222CC7ADA004EA220 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A487B07722CC7ADA004EA220 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 				A4C61F6822CC8758005ED098 /* CartTableViewController.swift */,
 				9446504F22CE22180008E3B2 /* OrderConfirmationViewController.swift */,
 				A4C3B28422DF070F00D96D2C /* DeliveryAddressViewController.swift */,
+				A436D75F24866C2300251A5E /* FindMyLocationOnMapsViewController.swift */,
 			);
 			path = Ordering;
 			sourceTree = "<group>";
@@ -363,6 +366,7 @@
 				A4C61F7022CC88BB005ED098 /* UserController.swift in Sources */,
 				94D0D86722DC7BF000DD3CB7 /* UITextField+Extensions.swift in Sources */,
 				9457824422DDCEAF00FBCA92 /* OrderHistoryTableViewController.swift in Sources */,
+				A436D76024866C2300251A5E /* FindMyLocationOnMapsViewController.swift in Sources */,
 				9457824222DDC26A00FBCA92 /* UpdatePasswordViewController.swift in Sources */,
 				9446505022CE22180008E3B2 /* OrderConfirmationViewController.swift in Sources */,
 				944F537922CCB561001AD654 /* Order.swift in Sources */,
