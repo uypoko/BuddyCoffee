@@ -12,12 +12,12 @@
 		9446505022CE22180008E3B2 /* OrderConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9446504F22CE22180008E3B2 /* OrderConfirmationViewController.swift */; };
 		944F537922CCB561001AD654 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944F537822CCB561001AD654 /* Order.swift */; };
 		944F537B22CCB5E0001AD654 /* OrderHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944F537A22CCB5E0001AD654 /* OrderHistory.swift */; };
-		944F537D22CCC389001AD654 /* DrinkTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944F537C22CCC389001AD654 /* DrinkTableViewCell.swift */; };
 		944F538022CCD9B9001AD654 /* DrinkDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944F537F22CCD9B9001AD654 /* DrinkDetailViewController.swift */; };
 		9457824222DDC26A00FBCA92 /* UpdatePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9457824122DDC26A00FBCA92 /* UpdatePasswordViewController.swift */; };
 		9457824422DDCEAF00FBCA92 /* OrderHistoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9457824322DDCEAF00FBCA92 /* OrderHistoryTableViewController.swift */; };
 		9457824622DDF04100FBCA92 /* OrderHistoryDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9457824522DDF04100FBCA92 /* OrderHistoryDetailTableViewController.swift */; };
 		94A922FB22D71BDE0048CE42 /* SignInSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94A922FA22D71BDE0048CE42 /* SignInSignUpViewController.swift */; };
+		94C1619A2340D4600035BB7F /* DrinkTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C161992340D4600035BB7F /* DrinkTableViewCell.swift */; };
 		94D0D86722DC7BF000DD3CB7 /* UITextField+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94D0D86622DC7BF000DD3CB7 /* UITextField+Extensions.swift */; };
 		94D0D86922DC7F7C00DD3CB7 /* UITextView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94D0D86822DC7F7C00DD3CB7 /* UITextView+Extensions.swift */; };
 		94D2AE1722D335EF00BA40F9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 94D2AE1622D335EE00BA40F9 /* GoogleService-Info.plist */; };
@@ -43,12 +43,12 @@
 		9446504F22CE22180008E3B2 /* OrderConfirmationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderConfirmationViewController.swift; sourceTree = "<group>"; };
 		944F537822CCB561001AD654 /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		944F537A22CCB5E0001AD654 /* OrderHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderHistory.swift; sourceTree = "<group>"; };
-		944F537C22CCC389001AD654 /* DrinkTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkTableViewCell.swift; sourceTree = "<group>"; };
 		944F537F22CCD9B9001AD654 /* DrinkDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkDetailViewController.swift; sourceTree = "<group>"; };
 		9457824122DDC26A00FBCA92 /* UpdatePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePasswordViewController.swift; sourceTree = "<group>"; };
 		9457824322DDCEAF00FBCA92 /* OrderHistoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderHistoryTableViewController.swift; sourceTree = "<group>"; };
 		9457824522DDF04100FBCA92 /* OrderHistoryDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderHistoryDetailTableViewController.swift; sourceTree = "<group>"; };
 		94A922FA22D71BDE0048CE42 /* SignInSignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInSignUpViewController.swift; sourceTree = "<group>"; };
+		94C161992340D4600035BB7F /* DrinkTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkTableViewCell.swift; sourceTree = "<group>"; };
 		94D0D86622DC7BF000DD3CB7 /* UITextField+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extensions.swift"; sourceTree = "<group>"; };
 		94D0D86822DC7F7C00DD3CB7 /* UITextView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+Extensions.swift"; sourceTree = "<group>"; };
 		94D2AE1622D335EE00BA40F9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -94,8 +94,8 @@
 		944F537E22CCD58E001AD654 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				944F537C22CCC389001AD654 /* DrinkTableViewCell.swift */,
 				9420290122DA214C00CE77B5 /* AddressTextView.swift */,
+				94C161992340D4600035BB7F /* DrinkTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -235,6 +235,7 @@
 				A487B06C22CC7ADA004EA220 /* Frameworks */,
 				A487B06D22CC7ADA004EA220 /* Resources */,
 				4C3A0E8F4F797870E1B6B5A1 /* [CP] Embed Pods Frameworks */,
+				BDCBCBB981436A828E1444FF /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -332,6 +333,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		BDCBCBB981436A828E1444FF /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BuddyCoffee/Pods-BuddyCoffee-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BuddyCoffee/Pods-BuddyCoffee-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BuddyCoffee/Pods-BuddyCoffee-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -346,7 +364,6 @@
 				94D0D86722DC7BF000DD3CB7 /* UITextField+Extensions.swift in Sources */,
 				9457824422DDCEAF00FBCA92 /* OrderHistoryTableViewController.swift in Sources */,
 				9457824222DDC26A00FBCA92 /* UpdatePasswordViewController.swift in Sources */,
-				944F537D22CCC389001AD654 /* DrinkTableViewCell.swift in Sources */,
 				9446505022CE22180008E3B2 /* OrderConfirmationViewController.swift in Sources */,
 				944F537922CCB561001AD654 /* Order.swift in Sources */,
 				9420290222DA214C00CE77B5 /* AddressTextView.swift in Sources */,
@@ -354,6 +371,7 @@
 				944F537B22CCB5E0001AD654 /* OrderHistory.swift in Sources */,
 				9420290022DA096100CE77B5 /* Validators.swift in Sources */,
 				A4C61F6E22CC88B1005ED098 /* DrinkController.swift in Sources */,
+				94C1619A2340D4600035BB7F /* DrinkTableViewCell.swift in Sources */,
 				944F538022CCD9B9001AD654 /* DrinkDetailViewController.swift in Sources */,
 				A4C61F6922CC8758005ED098 /* CartTableViewController.swift in Sources */,
 				A4C3B28522DF070F00D96D2C /* DeliveryAddressViewController.swift in Sources */,

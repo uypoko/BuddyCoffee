@@ -7,10 +7,13 @@
 //
 
 import UIKit
+import CoreLocation
+import GoogleMaps
 
 class DeliveryAddressViewController: UIViewController {
 
     var orderTotal: Int?
+    let locationManager =  CLLocationManager()
     
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var nameField: UITextField!
@@ -19,6 +22,7 @@ class DeliveryAddressViewController: UIViewController {
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
+    // MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         activityIndicator.isHidden = true
@@ -26,6 +30,7 @@ class DeliveryAddressViewController: UIViewController {
         // Do any additional setup after loading the view.
         NotificationCenter.default.addObserver(self, selector: #selector(updateUI), name: DrinkController.orderUpdatedNotification, object: nil)
         updateUI()
+        locationManager.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -33,9 +38,52 @@ class DeliveryAddressViewController: UIViewController {
         UserController.shared.addAuthStateListener()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            checkLocationAuthorization()
+        } else {
+            locationManager.requestWhenInUseAuthorization()
+        }
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         UserController.shared.removeAuthStateListener()
+    }
+    
+    func checkLocationAuthorization() {
+        switch CLLocationManager.authorizationStatus() {
+        case .authorizedWhenInUse:
+            locationManager.requestLocation()
+            break
+        case .denied:
+            showAlert(message: "Permission for location has been denied, you need to enable location service in Settings", completion: nil)
+            break
+        case .notDetermined:
+            locationManager.requestWhenInUseAuthorization()
+        case .restricted:
+            showAlert(message: "Permission for location has been restricted", completion: nil)
+            break
+        case .authorizedAlways:
+            break
+        }
+    }
+    
+    func reverseGeocode(coordinate: CLLocationCoordinate2D) {
+        let geoCoder = GMSGeocoder()
+        
+        geoCoder.reverseGeocodeCoordinate(coordinate) { [weak self] response, error in
+            guard let address = response?.firstResult(),
+                let lines = address.lines else { return }
+            let addressString = lines.joined(separator: " ")
+            
+            DispatchQueue.main.async {
+                self?.addressTextView.text = addressString
+            }
+        }
     }
     
     @objc func updateUI() {
@@ -102,4 +150,25 @@ class DeliveryAddressViewController: UIViewController {
         }
     }
 
+}
+
+// MARK: CLLocationManagerDelegate
+extension DeliveryAddressViewController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        guard status == .authorizedWhenInUse else {
+          return
+        }
+        
+        locationManager.requestLocation()
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let first = locations.first {
+            reverseGeocode(coordinate: first.coordinate)
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print(error.localizedDescription)
+    }
 }

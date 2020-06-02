@@ -79,7 +79,8 @@ class SignInSignUpViewController: UIViewController {
                 activityIndicator.isHidden = false
                 activityIndicator.startAnimating()
                 view.isUserInteractionEnabled = false
-                UserController.shared.signIn(email: email, password: password) { error in
+                UserController.shared.signIn(email: email, password: password) { [weak self] error in
+                    guard let self = self else { return }
                     self.activityIndicator.stopAnimating()
                     self.activityIndicator.isHidden = true
                     self.view.isUserInteractionEnabled = true
@@ -87,7 +88,7 @@ class SignInSignUpViewController: UIViewController {
                         self.showAlert(message: error.localizedDescription, completion: nil)
                     } else {
                         // Dismiss to UserManagementViewController
-                        self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+                        self.dismiss(animated: true, completion: nil)
                     }
                 }
             case 1:
@@ -97,7 +98,8 @@ class SignInSignUpViewController: UIViewController {
                 activityIndicator.isHidden = false
                 activityIndicator.startAnimating()
                 view.isUserInteractionEnabled = false
-                UserController.shared.signUp(email: email, password: password, name: name, phone: phone, address: address) { error in
+                UserController.shared.signUp(email: email, password: password, name: name, phone: phone, address: address) { [weak self] error in
+                    guard let self = self else { return }
                     self.activityIndicator.stopAnimating()
                     self.activityIndicator.isHidden = true
                     self.view.isUserInteractionEnabled = true
@@ -126,6 +128,10 @@ class SignInSignUpViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self)
     }
     
     // MARK: - Navigation

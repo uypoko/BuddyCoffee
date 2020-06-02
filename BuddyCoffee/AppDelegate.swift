@@ -8,12 +8,14 @@
 
 import UIKit
 import Firebase
+import GoogleMaps
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var orderTabBarItem: UITabBarItem!
+    private let googleAPIKey = "AIzaSyB8JOElCtkTrG2XOGOaXr4GOFCgxXBU2BM"
     
     @objc func updateOrderBagde() {
         switch DrinkController.shared.order.drinks.count {
@@ -27,6 +29,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
+        GMSServices.provideAPIKey(googleAPIKey)
+        
         DrinkController.shared.loadRemoteData()
         // Show how many items have been added
         orderTabBarItem = (self.window!.rootViewController! as! UITabBarController).viewControllers![1].tabBarItem

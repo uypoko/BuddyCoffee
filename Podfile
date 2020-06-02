@@ -6,8 +6,9 @@ target 'BuddyCoffee' do
   use_frameworks!
 
   # Pods for BuddyCoffee
-pod 'Firebase/Core'
-pod 'Firebase/Auth'
-pod 'Firebase/Firestore'
-pod 'Firebase/Storage'
+  pod 'Firebase/Core'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Firestore'
+  pod 'Firebase/Storage'
+  pod 'GoogleMaps'
 end

@@ -39,14 +39,18 @@ class UserController {
     
     func loadUserInformation(userId: String) {
         db.collection("users").document(userId).getDocument { (document, error) in
-            if let document = document, document.exists {
-                guard let emailData = document.data()?["email"], let email = emailData as? String else { return }
-                guard let nameData = document.data()?["name"], let name = nameData as? String else { return }
-                guard let phoneData = document.data()?["phone"], let phone = phoneData as? String else { return }
-                guard let addressData = document.data()?["address"], let address = addressData as? String else { return }
-                guard let pointsData = document.data()?["points"], let points = pointsData as? Int else { return }
-                self.buddyUser = BuddyUser(id: userId, email: email, name: name, phone: phone, address: address, points: points)
-            }
+            guard let document = document, document.exists else { return }
+            var email = ""
+            var name = ""
+            var phone = ""
+            var address = ""
+            var points = 0
+            if let emailData = document.data()?["email"] { email = "\(emailData)" }
+            if let nameData = document.data()?["name"] { name = "\(nameData)" }
+            if let phoneData = document.data()?["phone"] { phone = "\(phoneData)" }
+            if let addressData = document.data()?["address"] { address = "\(addressData)" }
+            if let pointsData = document.data()?["points"] { points = (pointsData as? Int) ?? 0 }
+            self.buddyUser = BuddyUser(id: userId, email: email, name: name, phone: phone, address: address, points: points)
         }
     }
     

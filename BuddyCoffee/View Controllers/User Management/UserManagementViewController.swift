@@ -26,6 +26,7 @@ class UserManagementViewController: UIViewController, UIImagePickerControllerDel
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
+    // MARK: View life cycles
     override func viewDidLoad() {
         super.viewDidLoad()
         profilePictureImageView.isHidden = true
@@ -33,10 +34,20 @@ class UserManagementViewController: UIViewController, UIImagePickerControllerDel
         activityIndicator.isHidden = true
         // Do any additional setup after loading the view.
         addressTextView.configure()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         NotificationCenter.default.addObserver(self, selector: #selector(updateUI), name: UserController.authChangedNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateProfilePicture), name: UserController.profilePictureChangedNotification, object: nil)
-        
-        registerForKeyboardNotifications()
+            registerForKeyboardNotifications()
+        UserController.shared.addAuthStateListener()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        UserController.shared.removeAuthStateListener()
+        NotificationCenter.default.removeObserver(self)
     }
     
     @objc func updateUI() {
@@ -105,16 +116,6 @@ class UserManagementViewController: UIViewController, UIImagePickerControllerDel
         } else {
             UserController.shared.signOut()
         }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        UserController.shared.addAuthStateListener()
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        UserController.shared.removeAuthStateListener()
     }
     
     @IBAction func changeProfilePictureTapped(_ sender: Any) {
