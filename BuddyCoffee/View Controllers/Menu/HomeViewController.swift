@@ -18,6 +18,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet weak var membershipLabel: UILabel!
     @IBOutlet weak var drinkTableView: UITableView!
     
+    // MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         // Make userImageView appear circular
@@ -33,6 +34,16 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         NotificationCenter.default.addObserver(self, selector: #selector(updateDrinkUI), name: DrinkController.drinkUpdatedNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateProfilePicture), name: UserController.profilePictureChangedNotification, object: nil)
         updateDrinkUI()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        UserController.shared.addAuthStateListener()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        UserController.shared.removeAuthStateListener()
     }
     
     @objc func updateUserUI() {
@@ -108,16 +119,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             let drinkDetailViewController = segue.destination as! DrinkDetailViewController
             drinkDetailViewController.drink = drink
         }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        UserController.shared.addAuthStateListener()
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        UserController.shared.removeAuthStateListener()
     }
 
 }

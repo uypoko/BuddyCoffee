@@ -12,6 +12,7 @@ class CartTableViewController: UITableViewController {
 
     var total: Int = 0
     
+    // MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -21,6 +22,18 @@ class CartTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         NotificationCenter.default.addObserver(tableView!, selector: #selector(UITableView.reloadData), name: DrinkController.orderUpdatedNotification, object: nil)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if !DrinkController.shared.order.drinks.isEmpty {
+            total = DrinkController.shared.order.drinks.reduce(0) { (result, drinkInOrder) -> Int in
+                return result + (drinkInOrder.drink.price * drinkInOrder.quantity)
+            }
+            self.navigationItem.title = "Total: \(total) đ"
+        } else {
+            navigationItem.title = "Cart"
+        }
     }
 
     // MARK: - Table view data source
@@ -69,18 +82,6 @@ class CartTableViewController: UITableViewController {
     @IBAction func confirmCartButtonTapped(_ sender: Any) {
         guard !DrinkController.shared.order.drinks.isEmpty else { return }
         performSegue(withIdentifier: "DeliveryAddressSegue", sender: nil)
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        if !DrinkController.shared.order.drinks.isEmpty {
-            total = DrinkController.shared.order.drinks.reduce(0) { (result, drinkInOrder) -> Int in
-                return result + (drinkInOrder.drink.price * drinkInOrder.quantity)
-            }
-            self.navigationItem.title = "Total: \(total) đ"
-        } else {
-            navigationItem.title = "Cart"
-        }
     }
 
     // MARK: - Navigation

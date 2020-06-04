@@ -23,6 +23,7 @@ class SignInSignUpViewController: UIViewController {
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
+    // MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         activityIndicator.isHidden = true
@@ -30,6 +31,14 @@ class SignInSignUpViewController: UIViewController {
         
         updateUI()
         registerForKeyboardNotifications()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self)
     }
     
     func registerForKeyboardNotifications() {
@@ -118,20 +127,6 @@ class SignInSignUpViewController: UIViewController {
         } catch(let error) {
             showAlert(message: (error as! ValidationError).message, completion: nil)
         }
-    }
-    
-    func showAlert(message: String, completion: ((UIAlertAction) -> Void)?) {
-        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: completion))
-        present(alert, animated: true, completion: nil)
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        NotificationCenter.default.removeObserver(self)
     }
     
     // MARK: - Navigation
