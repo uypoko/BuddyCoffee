@@ -59,13 +59,11 @@ class UserManagementViewController: UIViewController, UIImagePickerControllerDel
                 self.nameTextField.text = buddyUser.name
                 self.phoneTextField.text = buddyUser.phone
                 self.addressTextView.text = buddyUser.address
-                self.addressTextView.textColor = .black
             } else {
                 self.emailTextField.text = nil
                 self.nameTextField.text = nil
                 self.phoneTextField.text = nil
                 self.addressTextView.text = "Address"
-                self.addressTextView.textColor = .lightGray
                 self.memberInfoView.isHidden = true
                 self.signInSignOutButton.setTitle("Sign In", for: .normal)
             }

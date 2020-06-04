@@ -92,7 +92,6 @@ class DeliveryAddressViewController: UIViewController {
             nameField.text = user.name
             phoneNumberField.text = "\(user.phone)"
             addressTextView.text = user.address
-            addressTextView.textColor = .black
         }
     }
     

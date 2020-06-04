@@ -12,10 +12,9 @@ class AddressTextView: UITextView, UITextViewDelegate {
     
     func textViewDidBeginEditing(_ textView: UITextView)
     {
-        if (textView.text == "Address" && textView.textColor == .lightGray)
+        if (textView.text == "Address")
         {
             textView.text = ""
-            textView.textColor = .black
         }
         textView.becomeFirstResponder()
     }
@@ -25,7 +24,6 @@ class AddressTextView: UITextView, UITextViewDelegate {
         if (textView.text == "")
         {
             textView.text = "Address"
-            textView.textColor = .lightGray
         }
         textView.resignFirstResponder()
     }
@@ -36,7 +34,6 @@ class AddressTextView: UITextView, UITextViewDelegate {
         layer.borderWidth = 0.25
         layer.cornerRadius = 5
         text = "Address"
-        textColor = .lightGray
     }
     /*
     // Only override draw() if you perform custom drawing.
