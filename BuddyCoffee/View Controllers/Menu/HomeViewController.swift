@@ -22,8 +22,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     override func viewDidLoad() {
         super.viewDidLoad()
         // Make userImageView appear circular
-        userImageView.layer.cornerRadius = userImageView.frame.width / 2.0
-        userImageView.clipsToBounds = true
+        //userImageView.layer.cornerRadius = userImageView.frame.width / 2.0
+        //userImageView.clipsToBounds = true
         
         userImageView.isHidden = true
         userInforStackView.isHidden = true

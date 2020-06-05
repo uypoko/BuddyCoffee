@@ -162,14 +162,17 @@ class UserController {
         db.collection("users").document(user.id).collection("order-history").getDocuments { snapshot, error in
             if let snapshot = snapshot {
                 let dateFormatter = DateFormatter()
-                dateFormatter.dateFormat = "MMM dd, yyyy 'at' h:mm:ss a"
+                dateFormatter.dateFormat = "MMM dd, yyyy 'at' HH:mm:ss"
+                
                 for document in snapshot.documents {
                     let data: [String: Any] = document.data()
                     guard let dateData = data["date"], let dateString = dateData as? String else { return }
                     guard let date = dateFormatter.date(from: dateString) else { return }
                     guard let drinksData = data["drinks"] as? [[String: Any]] else { return }
+                    
                     var drinks: [DrinkInOrder] = []
                     var id = 0
+                    
                     for drink in drinksData {
                         let name = drink["name"] as! String
                         let price = drink["price"] as! Int
@@ -179,6 +182,7 @@ class UserController {
                         let drinkInOrder = DrinkInOrder(drink: drink, quantity: quantity)
                         drinks.append(drinkInOrder)
                     }
+                    
                     let order = Order(drinks: drinks, date: date)
                     orderHistory.orders.append(order)
                     completion(orderHistory)
