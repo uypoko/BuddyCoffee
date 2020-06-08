@@ -10,6 +10,10 @@ BuddyCoffee is a food delivery application where users can order drinks from a c
 * Update users information
 * Update users password
 * View order history
+
+
+<img src = "Images/Home.png" width ="200" /> <img src = "Images/Detail.png" width ="200" /> <img src = "Images/Cart.png" width ="200" /> <img src = "Images/Delivery.png" width ="200" /> <img src = "Images/Profile.png" width ="200" />
+
 ## Roadmap
 
 ## Prerequisites
