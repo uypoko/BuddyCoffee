@@ -27,7 +27,6 @@ class DeliveryAddressViewController: UIViewController {
         activityIndicator.isHidden = true
         addressTextView.configure()
         // Do any additional setup after loading the view.
-        NotificationCenter.default.addObserver(self, selector: #selector(updateUI), name: DrinkController.orderUpdatedNotification, object: nil)
         updateUI()
         locationManager.delegate = self
     }
@@ -35,6 +34,7 @@ class DeliveryAddressViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         UserController.shared.addAuthStateListener()
+        NotificationCenter.default.addObserver(self, selector: #selector(updateUI), name: DrinkController.orderUpdatedNotification, object: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -51,6 +51,7 @@ class DeliveryAddressViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         UserController.shared.removeAuthStateListener()
+        NotificationCenter.default.removeObserver(self)
     }
     
     func checkLocationAuthorization() {

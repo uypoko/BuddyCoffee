@@ -29,21 +29,24 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         userInforStackView.isHidden = true
         drinkTableView.dataSource = self
         drinkTableView.delegate = self
-        // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        UserController.shared.addAuthStateListener()
+        
         NotificationCenter.default.addObserver(self, selector: #selector(updateUserUI), name: UserController.authChangedNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateDrinkUI), name: DrinkController.drinkUpdatedNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateProfilePicture), name: UserController.profilePictureChangedNotification, object: nil)
         updateDrinkUI()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        UserController.shared.addAuthStateListener()
-    }
-    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         UserController.shared.removeAuthStateListener()
+        NotificationCenter.default.removeObserver(self, name: UserController.authChangedNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: DrinkController.drinkUpdatedNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UserController.profilePictureChangedNotification, object: nil)
     }
     
     @objc func updateUserUI() {
@@ -89,7 +92,10 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "drinkCell", for: indexPath) as! DrinkTableViewCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "drinkCell", for: indexPath) as? DrinkTableViewCell else {
+            fatalError("HomeViewController failed to cast to DrinkTableViewCell")
+        }
+        
         let drink = drinks[indexPath.section][indexPath.row]
         cell.updateUI(withDrink: drink)
         return cell

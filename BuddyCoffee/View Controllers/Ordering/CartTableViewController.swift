@@ -21,7 +21,6 @@ class CartTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        NotificationCenter.default.addObserver(tableView!, selector: #selector(UITableView.reloadData), name: DrinkController.orderUpdatedNotification, object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -34,6 +33,13 @@ class CartTableViewController: UITableViewController {
         } else {
             navigationItem.title = "Cart"
         }
+        
+        NotificationCenter.default.addObserver(tableView!, selector: #selector(UITableView.reloadData), name: DrinkController.orderUpdatedNotification, object: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self)
     }
 
     // MARK: - Table view data source
