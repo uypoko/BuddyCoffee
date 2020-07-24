@@ -11,4 +11,5 @@ target 'BuddyCoffee' do
   pod 'Firebase/Firestore'
   pod 'Firebase/Storage'
   pod 'GoogleMaps'
+  pod 'ReachabilitySwift'
 end
