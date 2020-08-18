@@ -26,26 +26,46 @@ class DrinkTableViewCell: UITableViewCell {
     }
     
     func updateUI(withDrink drink: Drink) {
-        drinkNameLabel.text = drink.name
-        priceLabel.text = "\(drink.price) đ"
+        DispatchQueue.main.async {
+            self.drinkNameLabel.text = drink.name
+            self.priceLabel.text = "\(drink.price) đ"
+        }
+        
         DrinkController.shared.fetchDrinkImage(drinkName: drink.name) { image in
-            if let image = image {
-                DispatchQueue.main.async {
-                    self.drinkImageView.image = image
+            DispatchQueue.main.async {
+                if let image = image {
+                    self.drinkImageView.image = self.resizeImage(image: image)
                 }
             }
         }
     }
     
     func updateUI(withDrink drinkInOrder: DrinkInOrder) {
-        drinkNameLabel.text = drinkInOrder.drink.name
-        priceLabel.text = "\(drinkInOrder.quantity)x\(drinkInOrder.drink.price) đ"
+        DispatchQueue.main.async {
+            self.drinkNameLabel.text = drinkInOrder.drink.name
+            self.priceLabel.text = "\(drinkInOrder.quantity)x\(drinkInOrder.drink.price) đ"
+        }
+        
+
         DrinkController.shared.fetchDrinkImage(drinkName: drinkInOrder.drink.name) { image in
-            if let image = image {
-                DispatchQueue.main.async {
-                    self.drinkImageView.image = image
+            DispatchQueue.main.async {
+                if let image = image {
+                    self.drinkImageView.image = self.resizeImage(image: image)
                 }
             }
         }
+    }
+    
+    private func resizeImage(image: UIImage) -> UIImage? {
+        let desiredHeight = contentView.bounds.width * 0.2
+        let newSize = CGSize(width: desiredHeight, height: desiredHeight)
+        let newRect = CGRect(x: 0, y: 0, width: desiredHeight, height: desiredHeight)
+        
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
+        image.draw(in: newRect)
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return newImage
     }
 }

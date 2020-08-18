@@ -30,9 +30,12 @@ class DrinkDetailViewController: UIViewController {
     
     func updateUI() {
         guard let drink = drink else { return }
-        drinkNameLabel.text = drink.name
-        descriptionLabel.text = drink.description
-        priceLabel.text = "\(drink.price) đ"
+        DispatchQueue.main.async {
+            self.drinkNameLabel.text = drink.name
+            self.descriptionLabel.text = drink.description
+            self.priceLabel.text = "\(drink.price) đ"
+        }
+        
         DrinkController.shared.fetchDrinkImage(drinkName: drink.name) { image in
             if let image = image {
                 DispatchQueue.main.async {
@@ -44,7 +47,9 @@ class DrinkDetailViewController: UIViewController {
 
     @IBAction func stepperValueChanged(_ sender: Any) {
         quantity = Int(stepper.value)
-        quantityLabel.text = "\(quantity)"
+        DispatchQueue.main.async {
+            self.quantityLabel.text = "\(self.quantity)"
+        }
     }
     
     @IBAction func addToCartButtonTapped(_ sender: Any) {

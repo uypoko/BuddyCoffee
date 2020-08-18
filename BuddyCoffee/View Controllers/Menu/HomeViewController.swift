@@ -29,6 +29,9 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         userInforStackView.isHidden = true
         drinkTableView.dataSource = self
         drinkTableView.delegate = self
+        
+        drinkTableView.rowHeight = UITableView.automaticDimension
+        drinkTableView.estimatedRowHeight = 200
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -67,7 +70,9 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @objc func updateDrinkUI() {
         categories = DrinkController.shared.getCategories
         drinks = DrinkController.shared.getDrinks
-        drinkTableView.reloadData()
+        DispatchQueue.main.async {
+            self.drinkTableView.reloadData()
+        }
     }
     
     @objc func updateProfilePicture() {
@@ -103,10 +108,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return categories[section]
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80.0
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
